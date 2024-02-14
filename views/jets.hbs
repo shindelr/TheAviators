@@ -1,43 +1,76 @@
-<h1>Browse Jets and Models</h1>
+<h3>Browse Jets and Models</h3>
 
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-        {{#each jetData.[0]}}
-            <th>{{@key}}</th>
+{{!-- Browse Jets Section --}}
+<div id="browseJets">
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+            {{#each jetData.[0]}}
+                <th>{{@key}}</th>
+            {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+        {{#each jetData}}
+            <tr>
+                <td>{{this.jet_id}}</td>
+                <td>{{this.make}}</td>
+                <td>{{this.model_id}}</td>
+                <td>{{this.pass_capacity}}</td>
+                <td>{{this.date_acquired}}</td>
+                <td>{{this.total_hours}}</td>
+            </tr>
         {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-    {{#each jetData}}
-        <tr>
-            <td>{{this.jet_id}}</td>
-            <td>{{this.make}}</td>
-            <td>{{this.model_id}}</td>
-            <td>{{this.pass_capacity}}</td>
-            <td>{{this.date_acquired}}</td>
-            <td>{{this.total_hours}}</td>
-        </tr>
-    {{/each}}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
-<h3>Model Types</h3>
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-        {{#each modelData.[0]}}
-            <th>{{@key}}</th>
+{{!-- Browse Models Section --}}
+<div id="browseModels">
+    <h3>Model Types</h3>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+            {{#each modelData.[0]}}
+                <th>{{@key}}</th>
+            {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+        {{#each modelData}}
+            <tr>
+                <td>{{this.make}}</td>
+                <td>{{this.model_id}}</td>
+                <td>{{this.pass_capacity}}</td>
+            </tr>
         {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-    {{#each modelData}}
-        <tr>
-            <td>{{this.make}}</td>
-            <td>{{this.model_id}}</td>
-            <td>{{this.pass_capacity}}</td>
-        </tr>
-    {{/each}}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
+{{!-- Create a jet form --}}
+<div id="createJet">
+    <h4>Create a new Jet</h4>
+    <form>
+        <fieldset>
+            <label>Jet ID</label> <input type="text" name="jet_id" >
+            <label>Model ID</label> <input type="text" name="model_id">
+            <label>Date Acquired</label> <input type="date" name="date_acquired">
+            <label>Total Hours</label> <input type="number" name="total_hours">
+            <button type="button">Create!</button>
+        </fieldset>
+    </form>
+</div>
+
+{{!-- Create a model form --}}
+<div id="createModel">
+    <h5>Create a new Model</h5>
+    <form>
+        <fieldset>
+            <label>Model ID</label> <input type="text" name="model_id">
+            <label>Make</label> <input type="text" name="make">
+            <label>Passenger Capacity</label> <input type="number" name="pass_capacity">
+            <button type="button">Create!</button>
+        </fieldset>
+    </form>
+</div>

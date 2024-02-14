@@ -10,7 +10,7 @@ const {engine} = require('express-handlebars');
 var exphbs = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
-// Tell express where to find static files
+// Tell express where to find static files, not needed atm
 // app.use(express.static('public'));
 // Database connection
 var db = require('./database/db_connector')
@@ -26,7 +26,7 @@ app.get('/', function(req, res){
 app.get('/jets', function(req, res){
     let jetQuery = `
     select jet_id, Models.make, Jets.model_id, Models.pass_capacity, 
-    Jets.date_acquired, Jets.total_hours 
+    date_format(Jets.date_acquired, '%a %b %d %Y') as date_acquired, Jets.total_hours 
     from Jets 
     left join Models on Jets.model_id = Models.model_id;`;
 
@@ -51,7 +51,7 @@ app.get('/jets', function(req, res){
 // Browse Tickets
 app.get('/tickets', function(req, res){
     let query = `select ticket_id as Ticket_Number, Customers.cust_fname, 
-    Customers.cust_lname, route_id, jet_id, price, flight_date 
+    Customers.cust_lname, route_id, jet_id, price, date_format(flight_date, '%a %b %d %Y') as flight_date 
     from Tickets 
     left join Customers on Tickets.customer_id = Customers.customer_id;`;
     db.pool.query(query, function(error, rows, fields){

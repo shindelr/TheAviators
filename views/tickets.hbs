@@ -1,11 +1,28 @@
-<h1>Browse Tickets</h1>
+<h3>Browse Tickets</h3>
+{{!-- Scripts --}}
+<script>
+    function showEditForm(){
+        let form = document.getElementById('ticketEdit');
+        form.style.display = 'block';
+    }
+    function hideForm(){
+        let form = document.getElementById('ticketEdit');
+        form.style.display = 'none';
+        alert('Submitted')
+    }
+</script>
 
+
+
+{{!-- Browse tickets --}}
+<div id="browseTickets">
 <table border="1" cellpadding="5">
     <thead>
         <tr>
         {{#each data.[0]}}
             <th>{{@key}}</th>
         {{/each}}
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +35,41 @@
             <td>{{this.jet_id}}</td>
             <td>{{this.price}}</td>
             <td>{{this.flight_date}}</td>
+            <td><button type="button" onclick="showEditForm()">Edit</button></td>
         </tr>
     {{/each}}
     </tbody>
 </table>
+</div>
+
+{{!-- Create a Ticket form --}}
+<div id="createTicket">
+    <h4>Create a new Ticket</h4>
+    <form>
+        <fieldset>
+            <label>Ticket ID</label> <input type="number" name="ticket_id" >
+            <label>Customer ID</label> <input type="number" name="customer_id">
+            <label>Route ID</label> <input type="number" name="route_id">
+            <label>Jet ID</label> <input type="text" name="jet_id">
+            <label>Price</label> <input type="number" name="price">
+            <label>Flight Date</label> <input type="date" name="flight_date">
+            <button type="button">Create!</button>
+        </fieldset>
+    </form>
+</div>
+
+{{!-- Update/Edit a Ticket form --}}
+<div id="ticketEdit" style="display: none">
+    <h5>Edit a Ticket</h5>
+    <form id="ticketEditForm">
+        <fieldset>
+            <label>Ticket ID</label> <input type="number" name="ticket_id" >
+            <label>Customer ID</label> <input type="number" name="customer_id">
+            <label>Route ID</label> <input type="number" name="route_id">
+            <label>Jet ID</label> <input type="text" name="jet_id">
+            <label>Price</label> <input type="number" name="price">
+            <label>Flight Date</label> <input type="date" name="flight_date">
+            <button type="button" onclick="hideForm()">Submit!</button>
+        </fieldset>
+    </form>
+</div>
