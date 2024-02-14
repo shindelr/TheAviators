@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Airports</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Airports</h1>
+
+[ <a href="customers.html">Customers</a> | <a href="jets.html">Jets</a> | <a href="models.html">Models</a> | <a href="routes.html">Routes</a> | <a href="airports.html">Airports</a> | <a href="tickets.html">Tickets</a>]
+<div id="browse" style="display: block">
+<p><strong>Look up Airports</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Airport ID</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td >LAX</td>
+    <td >Los Angeles</td>
+    <td >California</td>
+    <td >USA</td>
+  </tr>
+  <tr>
+    <td >JFK</td>
+    <td >New York City</td>
+    <td >New York</td>
+    <td >USA</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+
+<div id="insert" style="display: block">
+    <form id="addAirport">
+        <legend><strong>Add Airport</strong></legend>
+          <fieldset class="fields">
+            <label> Airport ID </label> <input type="text" name="id">
+            <label> City </label> <input type="text" name="city">
+            <label> State </label> <input type="text" name="state">
+            <label> Country </label> <input type="text" name="country">
+          </fieldset>
+          <input class="btn" type="submit" id="addAirport" value="Add Airport">
+          <input class="btn" type="button" value="Cancel">
+	</form> <!--add new Airport-->
+</div><!-- insert -->
+
