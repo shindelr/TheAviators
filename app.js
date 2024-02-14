@@ -18,7 +18,7 @@ var db = require('./database/db_connector')
 
 // ROUTES
 // Display Home page
-app.get('/index', function(req, res){
+app.get('/', function(req, res){
         res.render('index');  // Renders the index.hbs template   
 });
 
