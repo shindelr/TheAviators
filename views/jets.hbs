@@ -1,4 +1,10 @@
 <h3>Browse Jets and Models</h3>
+<script>
+    function successAlert(){
+        alert('Submitted')
+    }
+</script>
+
 
 {{!-- Browse Jets Section --}}
 <div id="browseJets">
@@ -57,8 +63,8 @@
             <label>Model ID</label> <input type="text" name="model_id">
             <label>Date Acquired</label> <input type="date" name="date_acquired">
             <label>Total Hours</label> <input type="number" name="total_hours">
-            <button type="button">Create!</button>
         </fieldset>
+        <button type="button" onclick="successAlert()">Create!</button>
     </form>
 </div>
 
@@ -70,7 +76,7 @@
             <label>Model ID</label> <input type="text" name="model_id">
             <label>Make</label> <input type="text" name="make">
             <label>Passenger Capacity</label> <input type="number" name="pass_capacity">
-            <button type="button">Create!</button>
         </fieldset>
+        <button type="button" onclick="successAlert()">Create!</button>
     </form>
 </div>

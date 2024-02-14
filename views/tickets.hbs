@@ -8,6 +8,9 @@
     function hideForm(){
         let form = document.getElementById('ticketEdit');
         form.style.display = 'none';
+        successAlert()
+    }
+    function successAlert(){
         alert('Submitted')
     }
 </script>
@@ -53,8 +56,8 @@
             <label>Jet ID</label> <input type="text" name="jet_id">
             <label>Price</label> <input type="number" name="price">
             <label>Flight Date</label> <input type="date" name="flight_date">
-            <button type="button">Create!</button>
         </fieldset>
+        <button type="button" onclick="successAlert()">Create!</button>
     </form>
 </div>
 
@@ -69,7 +72,7 @@
             <label>Jet ID</label> <input type="text" name="jet_id">
             <label>Price</label> <input type="number" name="price">
             <label>Flight Date</label> <input type="date" name="flight_date">
-            <button type="button" onclick="hideForm()">Submit!</button>
         </fieldset>
+        <button type="button" onclick="hideForm()">Submit!</button>
     </form>
 </div>
