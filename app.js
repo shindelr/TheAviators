@@ -24,13 +24,30 @@ app.get('/index', function(req, res){
 
 // Browse Jets
 app.get('/jets', function(req, res){
-    let query1 = "select * from Jets;";
-    db.pool.query(query1, function(error, rows, fields){
+    let query = "select * from Jets;";
+    db.pool.query(query, function(error, rows, fields){
         console.log(rows)
         res.render('jets', {data: rows});
     })
 });
 
+// Browse Models
+app.get('/models', function(req, res){
+    let query = "select * from Models;";
+    db.pool.query(query, function(error, rows, fields){
+        console.log(rows)
+        res.render('models', {data: rows});
+    })
+});
+
+// Browse Tickets
+app.get('/tickets', function(req, res){
+    let query = "select * from Tickets;";
+    db.pool.query(query, function(error, rows, fields){
+        console.log(rows)
+        res.render('tickets', {data: rows});
+    })
+});
 
 // LISTENER
 app.listen(PORT, function(){
