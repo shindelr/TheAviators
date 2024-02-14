@@ -1,8 +1,72 @@
 {{!-- Just a placeholder for a home page --}}
 <h3>TODO:</h3>
 <ul>
-    <li>Write a little paragraph about each table on <em>this</em> page</li>
+    <li>Add table info on <em>this</em> page <strong>Done</strong></li>
     <li>Get all HTML/HBS pages linked up  <strong>Done</strong></li>
     <li>Write our SQL queries</li>
     <li>Do the peer feedback changes on our PDF</li>
 </ul>
+
+<h3>Our Tables:</h3>
+<dl>
+    <dt><strong>Customers</strong></dt>
+        <dt><ul>
+                <li>Customers: Records various salient details of each customer who may charter one of our jets.</li>
+                <li>customer_id: int, not NULL,  auto-increment, unique, PK</li>
+                <li>cust_fname: varchar(45), not NULL</li>
+                <li>cust_lname: varchar(45), not NULL</li>
+                <li>cust_email : varchar(145), not NULL</li>
+                <li>cust_phone: varchar(45), not NULL</li>
+                <li>airline_miles: int, NULL  (could just be a customer and not a rewards member)</li>
+                <li>member_since: date, NULL (could just be a customer and not a rewards member)</li>
+                <li>Relationship: a 1:M  relationship with Customers  and Tickets is implemented with customer_id as a FK inside of Tickets.</li>
+        </ul></dt>
+        <br>
+    <dt><strong>Airports</strong></dt>
+        <dt><ul>
+            <li>airport_id: varchar(45), unique,  not NULL, PK</li>
+            <li>city: varchar(45), not NULL</li>
+            <li>state: varchar(45)</li>
+            <li>country: varchar(45), not NULL</li>
+            <li>Relationship: Has two different 1:M relationships with Routes. See the details on the Routes entity for the reasoning behind this. </li>
+        </ul></dt>
+        <br>
+    <dt><strong>Jets</strong></dt>
+        <dt><ul>
+            <li>jet_id: varchar(45), unique, not NULL, PK</li>
+            <li>model_id: varchar(145)  not NULL FK</li>
+            <li>date_acquired: date not null</li>
+            <li>total_hours: int not null</li>
+            <li>Relationship: Has a 1:M with Tickets (jet_id as FK in Tickets) and a 1:M with Models (model_id FK in Jets).</li>
+        </ul></dt>
+        <br>
+    <dt><strong>Models</strong></dt>
+        <dt><ul>
+            <li>model_id: varchar(145) not null, unique,  PK</li>
+            <li>make: varchar(145) not null</li>
+            <li>pass_capacity: int not null</li>
+            <li>Relationship: Has 1:M with Jets (model_id FK in Jets).</li>
+        </ul></dt>
+        <br>
+    <dt><strong>Tickets</strong></dt>
+        <dt><ul>
+            <li>ticket_id: int, not NULL, unique, PK</li>
+            <li>customer_id: int, not NULL, FK</li>
+            <li>route_id: int, not NULL, FK</li>
+            <li>jet_id: varchar(45), not NULL, FK</li>
+            <li>price: decimal(19,2), not NULL</li>
+            <li>flight_date: date, not NULL</li>
+            <li>Relationship: Has a 1:M with Customers (customer_id as FK in Tickets), has a 1:M with Routes (route_id as FK in Tickets), <br>has a 1:M with Jets (jet_id as FK in Tickets). Tickets serves as the intersection table facilitating the M:N relationships between Customers, Routes, and Jets.</li>
+        </ul></dt>
+            <br>
+    <dt><strong>Routes</strong></dt>
+        <dt><ul>
+            <li>route_id: int,  unique, not NULL,  PK</li>
+            <li>origin_loc: varchar(45), not NULL ,FK </li>
+            <li>destination_loc: varchar(45), not NULL, FK</li>
+            <li>distance: int, not NULL</li>
+            <li>times_flown: int, not NULL  (summative attribute, if never flown: 0)</li>
+            <li>Relationship: Has two different 1:M relationships with Airports. Since an airport can be either a destination or origin <br>location, we decided that Airports would have two different foreign keys in Routes to reflect this. Has a 1:M with Tickets (flight_id as FK in Tickets).</li>
+        </ul></dt>
+            <br>
+</dl>

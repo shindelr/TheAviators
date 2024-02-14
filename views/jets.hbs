@@ -60,7 +60,12 @@
     <form>
         <fieldset>
             <label>Jet ID</label> <input type="text" name="jet_id" >
-            <label>Model ID</label> <input type="text" name="model_id">
+            <label>Model ID</label> <select name="model_id">
+                <option>Choose a model</option>
+                {{#each modelData}}
+                <option>{{this.model_id}}</option>
+                {{/each}}
+                </select>
             <label>Date Acquired</label> <input type="date" name="date_acquired">
             <label>Total Hours</label> <input type="number" name="total_hours">
         </fieldset>
