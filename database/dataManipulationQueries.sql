@@ -6,6 +6,7 @@
 
 ---------- CREATE ---------------
 -- There should be 6 queries here
+-- Using : to denote variables
 ---------------------------------
 -- Create a new entry for a Jet
 insert into Jets (jet_id, model_id, total_hours, date_acquired)
@@ -22,6 +23,7 @@ values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :fligh
 
 ----------- READ ----------------
 -- There should be 6 queries here
+-- Using : to denote variables
 ---------------------------------
 -- Display Jets where model_id has been replaced by all the info from Models
     select 
@@ -55,10 +57,11 @@ values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :fligh
 -- to the JS function that populates form.
     select * from Tickets
         where ticket_id = :selected_ticket_id;
-        
+
 
 ---------- UPDATE -------------
 -- There should be 1 query here
+-- Using : to denote variables
 -------------------------------
 -- Update a ticket 
 update Tickets
