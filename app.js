@@ -11,7 +11,7 @@ var exphbs = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
 // Tell express where to find static files
-app.use(express.static('public'));
+// app.use(express.static('public'));
 // Database connection
 var db = require('./database/db_connector')
 
@@ -56,8 +56,23 @@ app.get('/tickets', function(req, res){
     })
 });
 
+// Browse Airports
+app.get('/airports', function(req, res){  
+    res.render('airports');
+});
+
+// Browse Customers
+app.get('/customers', function(req, res){
+    res.render('customers');
+});
+
+// Browse Routes
+app.get('/routes', function(req, res){
+    res.render('routes');
+});
+
+
 // LISTENER
 app.listen(PORT, function(){
     console.log('The Aviators have commenced flight on localhost:' + PORT);
 });
-
