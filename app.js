@@ -22,26 +22,30 @@ app.get('/', function(req, res){
         res.render('index');  // Renders the index.hbs template   
 });
 
-// Browse Jets
+// Browse Jets & Models
 app.get('/jets', function(req, res){
-    let query = `
+    let jetQuery = `
     select jet_id, Models.make, Jets.model_id, Models.pass_capacity, 
     Jets.date_acquired, Jets.total_hours 
     from Jets 
     left join Models on Jets.model_id = Models.model_id;`;
-    db.pool.query(query, function(error, rows, fields){
-        console.log(rows)
-        res.render('jets', {data: rows});
-    })
-});
 
-// Browse Models
-app.get('/models', function(req, res){
-    let query = "select * from Models;";
-    db.pool.query(query, function(error, rows, fields){
-        console.log(rows)
-        res.render('models', {data: rows});
-    })
+    let modelQuery = "select * from Models;";
+
+
+    db.pool.query(jetQuery, function(error1, rows, fields1){
+        console.log(rows);
+        let rows1 = rows
+        db.pool.query(modelQuery, function(error2, rows, fields2){
+            console.log(rows);
+            let rows2 = rows
+
+        res.render('jets', {
+                    jetData: rows1, 
+                    modelData: rows2
+            });
+        });
+    });
 });
 
 // Browse Tickets

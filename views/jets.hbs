@@ -1,15 +1,15 @@
-<h1>Browse Jets</h1>
+<h1>Browse Jets and Models</h1>
 
 <table border="1" cellpadding="5">
     <thead>
         <tr>
-        {{#each data.[0]}}
+        {{#each jetData.[0]}}
             <th>{{@key}}</th>
         {{/each}}
         </tr>
     </thead>
     <tbody>
-    {{#each data}}
+    {{#each jetData}}
         <tr>
             <td>{{this.jet_id}}</td>
             <td>{{this.make}}</td>
@@ -17,6 +17,26 @@
             <td>{{this.pass_capacity}}</td>
             <td>{{this.date_acquired}}</td>
             <td>{{this.total_hours}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<h3>Model Types</h3>
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+        {{#each modelData.[0]}}
+            <th>{{@key}}</th>
+        {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+    {{#each modelData}}
+        <tr>
+            <td>{{this.make}}</td>
+            <td>{{this.model_id}}</td>
+            <td>{{this.pass_capacity}}</td>
         </tr>
     {{/each}}
     </tbody>
