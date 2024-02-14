@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Customers</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Customers</h1>
+
+[ <a href="customers.html">Planets</a> | <a href="jets.html">Jets</a> | <a href="models.html">Models</a> | <a href="routes.html">Routes</a> | <a href="airports.html">Airports</a> | <a href="tickets.html">Tickets</a>]
+<div id="browse" style="display: block">
+<p><strong>Look up Customers</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Airline Miles</th>
+    <th>Member Since</th>
+  </tr>
+  <tr>
+    <td align="right" >1</td>
+    <td >Cheryl</td>
+    <td >Polman</td>
+    <td >polman.chery@aol.com</td>
+    <td >(123)265-6789</td>
+    <td align="right" >34000</td>
+    <td>2007-04-02</td>
+  </tr>
+  <tr>
+    <td align="right" >2</td>
+    <td >Norbert</td>
+    <td >Terrorboi</td>
+    <td >terrorboi.norbert@gmail.com</td>
+    <td >(456)876-1234</td>
+    <td align="right" >565</td>
+    <td>2019-07-11</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+
+<div id="insert" style="display: block">
+    <form id="addCustomer">
+        <legend><strong>Add Customer</strong></legend>
+          <fieldset class="fields">
+            <label> First Name </label> <input type="text" name="fname">
+            <label> Last Name </label> <input type="text" name="lname">
+            <label> Email </label> <input type="text" name="email">
+            <label> Phone Number </label> <input type="text" name="phone">
+          </fieldset>
+          <input class="btn" type="submit" id="addPlanet" value="Add Customer">
+          <input class="btn" type="button" value="Cancel">
+	</form> <!--add new customer-->
+</div><!-- insert -->
+
