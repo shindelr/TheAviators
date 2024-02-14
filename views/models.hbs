@@ -1,4 +1,4 @@
-<h1>Browse Jets</h1>
+<h1>Browse Models</h1>
 
 <table border="1" cellpadding="5">
     <thead>
@@ -11,12 +11,9 @@
     <tbody>
     {{#each data}}
         <tr>
-            <td>{{this.jet_id}}</td>
-            <td>{{this.make}}</td>
             <td>{{this.model_id}}</td>
+            <td>{{this.make}}</td>
             <td>{{this.pass_capacity}}</td>
-            <td>{{this.date_acquired}}</td>
-            <td>{{this.total_hours}}</td>
         </tr>
     {{/each}}
     </tbody>

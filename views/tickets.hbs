@@ -1,4 +1,4 @@
-<h1>Browse Jets</h1>
+<h1>Browse Tickets</h1>
 
 <table border="1" cellpadding="5">
     <thead>
@@ -11,12 +11,13 @@
     <tbody>
     {{#each data}}
         <tr>
+            <td>{{this.Ticket_Number}}</td>
+            <td>{{this.cust_fname}}</td>
+            <td>{{this.cust_lname}}</td>
+            <td>{{this.route_id}}</td>
             <td>{{this.jet_id}}</td>
-            <td>{{this.make}}</td>
-            <td>{{this.model_id}}</td>
-            <td>{{this.pass_capacity}}</td>
-            <td>{{this.date_acquired}}</td>
-            <td>{{this.total_hours}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.flight_date}}</td>
         </tr>
     {{/each}}
     </tbody>
