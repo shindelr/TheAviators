@@ -9,22 +9,28 @@
 ---------------------------------
 -- Create a new entry for a Jet
 insert into Jets (jet_id, model_id, total_hours, date_acquired)
-values (:jet_id_input, :model_id_input, :total_hours_input, :date_acquired_input)
+values (:jet_id_input, :model_id_input, :total_hours_input, :date_acquired_input);
 
 -- Create new entry for a Model
 insert into Models (model_id, make, pass_capacity)
-values (:model_id_input, :make_input, :pass_capacity_input)
+values (:model_id_input, :make_input, :pass_capacity_input);
 
 -- Create new entry for a Ticket
 insert into Tickets (customer_id, route_id, jet_id, price, flight_date)
-values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :flight_date_input)
+values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :flight_date_input);
 
--- TODO:
 -- Create new entry for a Route
 insert into Routes (route_id, origin_loc, destination_loc, distance, times_flown)
-values 
+values (:route_id_input, :origin_loc_input, :destination_loc_input, :distance_input, :times_flown_input);
+
 -- Create new entry for a Customer
+insert into Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since)
+values (:cust_fname_input, :cust_lname_input, :cust_email_input, :cust_phone_input, NULL, {date today});
+-- Not sure how to auto populate as today's date, but I'm sure we'll figure it out.
+
 -- Create new entry for an Airport
+insert into Airports (airport_id, city, state, country)
+values (:airport_id_input, :city_input, :state_input, :country_input);
 
 
 ----------- READ ----------------
@@ -111,6 +117,8 @@ update Tickets
 where ticket_id = :selected_ticket_id;
 
 ---------- DELETE -------------
+-- Using : to denote variables
 -------------------------------
--- TODO:
--- Write Route delete query
+-- Delete a Route
+delete from Routes
+where route_id = :route_id_input;
