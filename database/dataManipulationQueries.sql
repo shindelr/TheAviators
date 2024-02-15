@@ -97,11 +97,13 @@ values
 ---------- UPDATE -------------
 -- Using : to denote variables
 -------------------------------
--- Update a ticket 
+-- Update a ticket, used a select statement so that the user doesn't need to enter
+-- the customer ID, that way we can avoid update anomalies. I created dropdowns for
+-- the names so that it's less error prone.
 update Tickets
     set
     ticket_id = :ticket_id_input,
-    customer_id = :customer_id_input,
+    (select customer_id from Customers where cust_fname = :cust_fname_input and cust_lname = :cust_lname_input),
     route_id = :route_id_input,
     jet_id = :jet_id_input,
     price = :price_input,

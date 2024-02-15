@@ -68,24 +68,35 @@
     <form id="ticketEditForm">
         <fieldset>
             <label>Ticket ID: {selected ticket}</label> {{!-- <input type="number" name="ticket_id" > --}}
-            <label>Customer First Name</label> <input type="Text" name="customer_fname">
-            <label>Customer Last Name</label> <input type="Text" name="customer_lname">
+            <label>Customer First Name</label>
+                <select>
+                    <option>First Name</option>
+                    {{#each data}}
+                    <option>{{this.cust_fname}}</option>
+                    {{/each}}
+                </select>
+            <label>Customer Last Name</label> 
+                <select>
+                    <option>Last Name</option>
+                    {{#each data}}
+                    <option>{{this.cust_lname}}</option>
+                    {{/each}}
+                </select>
             <label> Route ID </label> 
                 <select name="route_id">
                     <option>Choose a Route</option>
-                    <option>1594</option>
-                    <option>1595</option>
-                    <option>2114</option>
-                    <option>2297</option>
+                    {{#each data}}
+                    <option>{{this.route_id}}</option>
+                    {{/each}}
                 </select>
+
             <label>Jet ID</label> 
                 <select>
                     <option>Choose a Jet ID</option>
-                    <option>JJX</option>
-                    <option>NQA</option>
-                    <option>RHQ</option>
-                    <option>TML</option>
-                    <option>ZDH</option>
+                    {{#each data}}
+                    <option>{{this.jet_id}}</option>
+                    {{/each}}
+                    </select>
                 </select>
             <label>Price</label> <input type="number" name="price">
             <label>Flight Date</label> <input type="date" name="flight_date">
