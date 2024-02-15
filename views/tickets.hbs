@@ -67,10 +67,26 @@
     <p>This form's fields will be populated with whatever row of data the user clicked. Example data shown below:</p>
     <form id="ticketEditForm">
         <fieldset>
-            <label>Ticket ID</label> <input type="number" name="ticket_id" >
-            <label>Customer ID</label> <input type="number" name="customer_id">
-            <label>Route ID</label> <input type="number" name="route_id">
-            <label>Jet ID</label> <input type="text" name="jet_id">
+            <label>Ticket ID: {selected ticket}</label> {{!-- <input type="number" name="ticket_id" > --}}
+            <label>Customer First Name</label> <input type="Text" name="customer_fname">
+            <label>Customer Last Name</label> <input type="Text" name="customer_lname">
+            <label> Route ID </label> 
+                <select name="route_id">
+                    <option>Choose a Route</option>
+                    <option>1594</option>
+                    <option>1595</option>
+                    <option>2114</option>
+                    <option>2297</option>
+                </select>
+            <label>Jet ID</label> 
+                <select>
+                    <option>Choose a Jet ID</option>
+                    <option>JJX</option>
+                    <option>NQA</option>
+                    <option>RHQ</option>
+                    <option>TML</option>
+                    <option>ZDH</option>
+                </select>
             <label>Price</label> <input type="number" name="price">
             <label>Flight Date</label> <input type="date" name="flight_date">
         </fieldset>

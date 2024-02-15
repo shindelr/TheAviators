@@ -5,7 +5,6 @@
 --  the connected MySQL database
 
 ---------- CREATE ---------------
--- There should be 6 queries here
 -- Using : to denote variables
 ---------------------------------
 -- Create a new entry for a Jet
@@ -20,9 +19,15 @@ values (:model_id_input, :make_input, :pass_capacity_input)
 insert into Tickets (customer_id, route_id, jet_id, price, flight_date)
 values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :flight_date_input)
 
+-- TODO:
+-- Create new entry for a Route
+insert into Routes (route_id, origin_loc, destination_loc, distance, times_flown)
+values 
+-- Create new entry for a Customer
+-- Create new entry for an Airport
+
 
 ----------- READ ----------------
--- There should be 6 queries here
 -- Using : to denote variables
 ---------------------------------
 -- Display Jets where model_id has been replaced by all the info from Models
@@ -31,14 +36,16 @@ values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :fligh
         Models.make, 
         Jets.model_id, 
         Models.pass_capacity, 
-        date_format(Jets.date_acquired, '%a %b %d %Y') as date_acquired, 
+        date_format(Jets.date_acquired, '%a %b %d %Y') as date_acquired,  --date_format() cuts off the timestamp.
         Jets.total_hours 
     from Jets 
-        left join Models 
-        on Jets.model_id = Models.model_id;
+        left join Models on Jets.model_id = Models.model_id;
 
 -- Display Models
     select * from Models;
+
+-- Display model_id for dropdown in Jets
+    select model_id from Models;
 
 -- Display Tickets where customer_id is replaced by the names of the customer
     select 
@@ -48,19 +55,46 @@ values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :fligh
         route_id, 
         jet_id, 
         price, 
-        date_format(flight_date, '%a %b %d %Y') as flight_date 
+        date_format(flight_date, '%a %b %d %Y') as flight_date  --date_format() cuts off the timestamp.
     from Tickets 
-        left join Customers 
-        on Tickets.customer_id = Customers.customer_id;
+        left join Customers on Tickets.customer_id = Customers.customer_id;
 
 -- Prepopulate Ticket Edit Form, the button will pass the appropriate ID number
 -- to the JS function that populates form.
     select * from Tickets
         where ticket_id = :selected_ticket_id;
 
+-- Read Routes
+    select
+        route_id as Route_Number,
+        origin_loc as Origin,
+        destination_loc as Destination,
+        distance as Distance,
+        times_flown as Times_Flown
+        from Routes
+            left join Airports on Routes.origin_loc = Airports.airport_id;
+
+-- Read Airports
+    select 
+        airport_id as Airport_ID,
+        city as City,
+        state as State,
+        country as Country
+    from Airports;
+
+-- Read Customers
+    select
+        customer_id as ID,
+        cust_fname as First_Name,
+        cust_lname as Last_Name,
+        cust_email as Email,
+        cust_phone as Phone_Number,
+        airline_miles as Airline_Miles,
+        date_format(member_since,'%a %b %d %Y') as Member_Since
+    from Customers;
+
 
 ---------- UPDATE -------------
--- There should be 1 query here
 -- Using : to denote variables
 -------------------------------
 -- Update a ticket 
@@ -74,7 +108,7 @@ update Tickets
     flight_date = :flight_date_input
 where ticket_id = :selected_ticket_id;
 
-
 ---------- DELETE -------------
--- There should be 1 query here
 -------------------------------
+-- TODO:
+-- Write Route delete query
