@@ -61,18 +61,30 @@ app.get('/tickets', function(req, res){
 });
 
 // Browse Airports
-app.get('/airports', function(req, res){  
-    res.render('airports');
+app.get('/airports', function(req, res){
+    let airportQuery = `select * from Airports;`
+    db.pool.query(airportQuery, function(error, rows, fields){
+        res.render('airports', {data: rows});
+    })
+    
 });
 
 // Browse Customers
 app.get('/customers', function(req, res){
-    res.render('customers');
+    let customersQuery = `select * from Customers;`
+    db.pool.query(customersQuery, function(error, rows, fields){
+        res.render('customers', {data: rows});
+    })
+    
 });
 
 // Browse Routes
 app.get('/routes', function(req, res){
-    res.render('routes');
+    let routesQuery = `select * from Routes;`
+    db.pool.query(routesQuery, function(error, rows, fields){
+        res.render('routes', {data: rows});
+    })
+    
 });
 
 
