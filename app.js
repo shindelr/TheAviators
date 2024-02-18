@@ -62,7 +62,7 @@ app.get('/tickets', function(req, res){
 
 // Browse Airports
 app.get('/airports', function(req, res){
-    let airportQuery = `select * from Airports;`
+    let airportQuery = `select * from Airports;`;
     db.pool.query(airportQuery, function(error, rows, fields){
         res.render('airports', {data: rows});
     })
@@ -71,7 +71,7 @@ app.get('/airports', function(req, res){
 
 // Browse Customers
 app.get('/customers', function(req, res){
-    let customersQuery = `select * from Customers;`
+    let customersQuery = `select * from Customers;`;
     db.pool.query(customersQuery, function(error, rows, fields){
         res.render('customers', {data: rows});
     })
@@ -80,7 +80,7 @@ app.get('/customers', function(req, res){
 
 // Browse Routes
 app.get('/routes', function(req, res){
-    let routesQuery = `select * from Routes;`
+    let routesQuery = `select * from Routes;`;
     db.pool.query(routesQuery, function(error, rows, fields){
         res.render('routes', {data: rows});
     })
