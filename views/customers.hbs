@@ -1,39 +1,34 @@
 <h3>Browse Customers</h3>
 
-<div id="browse" style="display: block">
-<table border="1" cellpadding="5">
-  <tr>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Phone Number</th>
-    <th>Airline Miles</th>
-    <th>Member Since</th>
-  </tr>
-  <tr>
-    <td align="right" >1</td>
-    <td >Cheryl</td>
-    <td >Polman</td>
-    <td >polman.chery@aol.com</td>
-    <td >(123)265-6789</td>
-    <td align="right" >34000</td>
-    <td>2007-04-02</td>
-  </tr>
-  <tr>
-    <td align="right" >2</td>
-    <td >Norbert</td>
-    <td >Terrorboi</td>
-    <td >terrorboi.norbert@gmail.com</td>
-    <td >(456)876-1234</td>
-    <td align="right" >565</td>
-    <td>2019-07-11</td>
-  </tr>
+  {{!-- Browse customers --}}
+<div id="browseCustomers">
+<table id = "customers-table" border="1" cellpadding="5">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.cust_fname}}</td>
+            <td>{{this.cust_lname}}</td>
+            <td>{{this.cust_email}}</td>
+            <td>{{this.cust_phone}}</td>
+            <td>{{this.airline_miles}}</td>
+            <td>{{this.member_since}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
 </table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
+</div>
 
-
+ {{!-- Add new customer --}}
 <div id="insert" style="display: block">
     <form id="addCustomer">
         <legend><strong>Add Customer</strong></legend>
@@ -47,4 +42,3 @@
           <input class="btn" type="button" value="Cancel">
 	</form> <!--add new customer-->
 </div><!-- insert -->
-

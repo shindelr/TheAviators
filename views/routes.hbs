@@ -1,33 +1,33 @@
 <h3>Browse Routes</h3>
 
-<div id="browse" style="display: block">
+  {{!-- Browse Routes --}}
+<div id="browseRoutes">
 <table border="1" cellpadding="5">
-  <tr>
-    <th>Route ID</th>
-    <th>Origin</th>
-    <th>Destination</th>
-    <th>Distance</th>
-    <th>Times Flown</th>
-  </tr>
-  <tr>
-    <td align="right" >1594</td>
-    <td >LAX</td>
-    <td >JFK</td>
-    <td align="right" >2469</td>
-    <td align="right" >1635</td>
-  </tr>
-  <tr>
-    <td align="right" >1595</td>
-    <td >JFK</td>
-    <td >LAX</td>
-    <td align="right" >2469</td>
-    <td align="right" >1547</td>
-  </tr>
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.route_id}}</td>
+            <td>{{this.origin_loc}}</td>
+            <td>{{this.destination_loc}}</td>
+            <td>{{this.distance}}</td>
+            <td>{{this.times_flown}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
 </table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
+</div>
 
 
+  {{!-- Create new Route --}}
 <div id="insert" style="display: block">
     <form id="addRoute">
         <legend><strong>Add Route</strong></legend>
@@ -42,6 +42,8 @@
 	</form> <!--add new route-->
 </div><!-- insert -->
 
+
+  {{!-- Delete Route --}}
 <div id="delete" style="display: block">
   <form id="deleteRoute">
     <legend><strong>Delete Route</strong></legend>
