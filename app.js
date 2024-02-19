@@ -4,6 +4,10 @@
 // Server setup 
 var express = require('express');
 var app = express()
+// Configuring to handle JSON and form data
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
 PORT = 5001
 // Template (handlebars) setup
 const {engine} = require('express-handlebars');
