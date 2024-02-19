@@ -1,6 +1,6 @@
 -- Authors: Alma Valenzuela, Robin Shindelman
 -- Date Created: 2024-02-07
--- Last Modified: 2024-02-07, 6:40pm PST by Robin
+-- Last Modified: 2024-02-08, 1:10am CST by Alma
 
 -- Contained in this file are The Aviators' (Formerly Known As Team 31!) data
 -- definition queries. The file is neatly structured into two sections concerned
@@ -97,10 +97,10 @@ values ('LAX', 'Los Angeles', 'California', 'USA'),
 
 -- Routes
 insert into Routes (route_id, origin_loc, destination_loc, distance, times_flown)
-values (1594, 'LAX', 'JFK', 2469, 1635),
-(1595, 'JFK', 'LAX', 2469, 1547),
-(2297, 'JFK', 'LHR', 3442, 950),
-(2114, 'JFK', 'CDG', 3623, 1163);
+values (1594, (select airport_id from Airports where airport_id = 'LAX'), (select airport_id from Airports where airport_id = 'JFK'), 2469, 1635),
+(1595, (select airport_id from Airports where airport_id = 'JFK'), (select airport_id from Airports where airport_id = 'LAX'), 2469, 1547),
+(2297, (select airport_id from Airports where airport_id = 'JFK'), (select airport_id from Airports where airport_id = 'LHR'), 3442, 950),
+(2114, (select airport_id from Airports where airport_id = 'JFK'), (select airport_id from Airports where airport_id = 'CDG'), 3623, 1163);
 
 
 -- Models
