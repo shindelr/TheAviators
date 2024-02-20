@@ -8,7 +8,9 @@ var app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
-PORT = 5001
+
+PORT = 5001  // Dev PORT
+
 // Template (handlebars) setup
 const {engine} = require('express-handlebars');
 var exphbs = require('express-handlebars');
