@@ -51,8 +51,9 @@
         <label> Route ID </label> 
           <select name="route_id">
             <option>Choose a Route</option>
-            <option>1594</option>
-            <option>1595</option>
+           {{#each data}}
+              <option>{{this.route_id}}</option>
+            {{/each}}
           </select>
       </fieldset>
       <input class="btn" type="submit" id="deleteRoute" value="Remove Route">
