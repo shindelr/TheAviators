@@ -4,6 +4,7 @@
 // Server setup 
 var express = require('express');
 var app = express()
+
 // Configuring to handle JSON and form data
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -16,8 +17,7 @@ const {engine} = require('express-handlebars');
 var exphbs = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
-// Tell express where to find static files, not needed atm
-// app.use(express.static('public'));
+
 // Database connection
 var db = require('./database/db_connector')
 
@@ -56,10 +56,16 @@ app.get('/jets', function(req, res){
 
 // Browse Tickets
 app.get('/tickets', function(req, res){
-    let query = `select ticket_id as Ticket_Number, Customers.cust_fname, 
-    Customers.cust_lname, route_id, jet_id, price, date_format(flight_date, '%a %b %d %Y') as flight_date 
-    from Tickets 
-    left join Customers on Tickets.customer_id = Customers.customer_id;`;
+    let query = `select 
+                ticket_id as \`Ticket Number\`, 
+                Customers.cust_fname as \`First Name\`, 
+                Customers.cust_lname as \`Last Name\`, 
+                route_id as \`Route Number\`, 
+                jet_id as \`Jet ID\`, 
+                price as Price, 
+                date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+                from Tickets 
+                left join Customers on Tickets.customer_id = Customers.customer_id;`;
     db.pool.query(query, function(error, rows, fields){
         console.log(rows)
         res.render('tickets', {data: rows});

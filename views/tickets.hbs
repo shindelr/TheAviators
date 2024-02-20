@@ -31,13 +31,13 @@
     <tbody>
     {{#each data}}
         <tr>
-            <td>{{this.Ticket_Number}}</td>
-            <td>{{this.cust_fname}}</td>
-            <td>{{this.cust_lname}}</td>
-            <td>{{this.route_id}}</td>
-            <td>{{this.jet_id}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.flight_date}}</td>
+            <td>{{this.[Ticket Number]}}</td>
+            <td>{{this.[First Name]}}</td>
+            <td>{{this.[Last Name]}}</td>
+            <td>{{this.[Route Number]}}</td>
+            <td>{{this.[Jet ID]}}</td>
+            <td>{{this.Price}}</td>
+            <td>{{this.[Flight Date]}}</td>
             <td><button type="button" onclick="showEditForm()">Edit</button></td>
         </tr>
     {{/each}}
@@ -70,21 +70,21 @@
                 <select>
                     <option>First Name</option>
                     {{#each data}}
-                    <option>{{this.cust_fname}}</option>
+                    <option>{{this.[First Name]}}</option>
                     {{/each}}
                 </select>
             <label>Customer Last Name</label> 
                 <select>
                     <option>Last Name</option>
                     {{#each data}}
-                    <option>{{this.cust_lname}}</option>
+                    <option>{{this.[Last Name]}}</option>
                     {{/each}}
                 </select>
             <label> Route ID </label> 
                 <select name="route_id">
                     <option>Choose a Route</option>
                     {{#each data}}
-                    <option>{{this.route_id}}</option>
+                    <option>{{this.[Route Number]}}</option>
                     {{/each}}
                 </select>
 
@@ -92,7 +92,7 @@
                 <select>
                     <option>Choose a Jet ID</option>
                     {{#each data}}
-                    <option>{{this.jet_id}}</option>
+                    <option>{{this.[Jet ID]}}</option>
                     {{/each}}
                     </select>
                 </select>
