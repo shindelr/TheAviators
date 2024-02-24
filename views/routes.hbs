@@ -33,8 +33,20 @@
         <legend><strong>Add Route</strong></legend>
           <fieldset class="fields">
             <label> Route ID </label> <input type="text" name="id">
-            <label> Origin Airport</label> <input type="text" name="origin">
-            <label> Destination Airport</label> <input type="text" name="destination">
+            <label> Origin Airport</label> 
+              <select name="airport_id">
+              <option>Choose Origin Airport</option>
+                {{#each data}}
+                <option>{{this.airport_id}}</option>
+                {{/each}}
+              </select>
+            <label> Destination Airport</label> 
+                <select name="airport_id">
+                <option>Choose Destination Airport</option>
+                  {{#each data}}
+                  <option>{{this.airport_id}}</option>
+                  {{/each}}
+                </select>
             <label> Distance </label> <input type="text" name="distance">
           </fieldset>
           <input class="btn" type="submit" id="addRoute" value="Add Route">
