@@ -66,8 +66,11 @@ app.get('/tickets', function(req, res){
 
 // Browse Airports
 app.get('/airports', function(req, res){
-    let airportQuery = `select * from Airports;`;
+    let airportQuery = `select airport_id as Airport_Code, city as City, 
+    state as State, country as Country 
+    from Airports;`;
     db.pool.query(airportQuery, function(error, rows, fields){
+        console.log(rows)
         res.render('airports', {data: rows});
     })
     
@@ -75,8 +78,12 @@ app.get('/airports', function(req, res){
 
 // Browse Customers
 app.get('/customers', function(req, res){
-    let customersQuery = `select * from Customers;`;
+    let customersQuery = `select customer_id as Customer_ID, cust_fname as First_Name, cust_lname as Last_Name, 
+    cust_email as Email, cust_phone as Phone_Number, airline_miles as Airline_Miles,  
+    date_format(member_since, '%a %b %d %Y') as Member_Since
+    from Customers;`;
     db.pool.query(customersQuery, function(error, rows, fields){
+        console.log(rows)
         res.render('customers', {data: rows});
     })
     
@@ -84,11 +91,15 @@ app.get('/customers', function(req, res){
 
 // Browse Routes
 app.get('/routes', function(req, res){
-    let routesQuery = `select * from Routes;`;
+    let routesQuery = `select route_id AS Route_Number, origin_loc AS Origin,
+    destination_loc AS Destination, distance AS Distance, 
+    times_flown AS Times_Flown 
+    from Routes;`;
+    // let airportQuery = 'Airports.airport_id;';
     db.pool.query(routesQuery, function(error, rows, fields){
-        res.render('routes', {data: rows});
-    })
-    
+        console.log(rows)
+        res.render('routes', {data: rows});       
+    })   
 });
 
 
