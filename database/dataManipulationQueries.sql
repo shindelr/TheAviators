@@ -25,7 +25,7 @@ values (:route_id_input, :origin_loc_input, :destination_loc_input, :distance_in
 
 -- Create new entry for a Customer
 insert into Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since)
-values (:cust_fname_input, :cust_lname_input, :cust_email_input, :cust_phone_input, NULL, {date today});
+values (:cust_fname_input, :cust_lname_input, :cust_email_input, :cust_phone_input, 0, (CURRENT_DATE));
 -- Not sure how to auto populate as today's date, but I'm sure we'll figure it out.
 
 -- Create new entry for an Airport
