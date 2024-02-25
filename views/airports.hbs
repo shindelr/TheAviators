@@ -2,7 +2,7 @@
 
  {{!-- Browse Airports --}}
 <div id="browseAirports">
-<table border="1" cellpadding="5">
+<table id="airports-table" border="1" cellpadding="5">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -15,28 +15,38 @@
     <tbody>
         {{#each data}}
         <tr>
-            <td>{{this.airport_id}}</td>
-            <td>{{this.city}}</td>
-            <td>{{this.state}}</td>
-            <td>{{this.country}}</td>
+            <td>{{this.Airport_Code}}</td>
+            <td>{{this.City}}</td>
+            <td>{{this.State}}</td>
+            <td>{{this.Country}}</td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 </div>
 
- {{!-- Add Airport --}}
-<div id="insert" style="display: block">
-    <form id="addAirport">
-        <legend><strong>Add Airport</strong></legend>
-          <fieldset class="fields">
-            <label> Airport ID </label> <input type="text" name="id">
-            <label> City </label> <input type="text" name="city">
-            <label> State </label> <input type="text" name="state">
-            <label> Country </label> <input type="text" name="country">
-          </fieldset>
-          <input class="btn" type="submit" id="addAirport" value="Add Airport">
-          <input class="btn" type="button" value="Cancel">
-	</form> <!--add new Airport-->
-</div><!-- insert -->
+
+
+
+ {{!-- Form to add a record to the table  --}}
+<h2>Add New Airport</h2>
+<p>Enter details below to add new airport</p>
+<form id="add-airport">
+    <label for="input-code">Airport Code: </label>
+    <input type="text" name="input-code" id="input-code">
+    
+    <label for="input-city">City: </label>
+    <input type="text" name="input-city" id="input-city">
+
+    <label for="input-state">State: </label>
+    <input type="text" name="input-state" id="input-state">
+
+    <label for="input-country">Country: </label>
+    <input type="text" name="input-country" id="input-country">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_airport.js"></script>
 
