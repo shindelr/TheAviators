@@ -82,7 +82,7 @@ values (:airport_id_input, :city_input, :state_input, :country_input);
 
 -- Read Airports
     select 
-        airport_id as Airport_ID,
+        airport_id as Airport_Code,
         city as City,
         state as State,
         country as Country
@@ -90,7 +90,7 @@ values (:airport_id_input, :city_input, :state_input, :country_input);
 
 -- Read Customers
     select
-        customer_id as ID,
+        customer_id as Customer_ID,
         cust_fname as First_Name,
         cust_lname as Last_Name,
         cust_email as Email,
