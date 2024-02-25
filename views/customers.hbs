@@ -13,13 +13,13 @@
     <tbody>
         {{#each data}}
         <tr>
-            <td>{{this.customer_id}}</td>
-            <td>{{this.cust_fname}}</td>
-            <td>{{this.cust_lname}}</td>
-            <td>{{this.cust_email}}</td>
-            <td>{{this.cust_phone}}</td>
-            <td>{{this.airline_miles}}</td>
-            <td>{{this.member_since}}</td>
+            <td>{{this.Customer_ID}}</td>
+            <td>{{this.First_Name}}</td>
+            <td>{{this.Last_Name}}</td>
+            <td>{{this.Email}}</td>
+            <td>{{this.Phone_Number}}</td>
+            <td>{{this.Airline_Miles}}</td>
+            <td>{{this.Member_Since}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -29,7 +29,7 @@
  {{!-- Add new customer --}}
 <div id="insert" style="display: block">
     <form id="addCustomer">
-        <legend><strong>Become a Member!</strong></legend>
+        <legend><strong>Become a Member</strong></legend>
           <fieldset class="fields">
             <label> First Name </label> <input type="text" name="fname">
             <label> Last Name </label> <input type="text" name="lname">
