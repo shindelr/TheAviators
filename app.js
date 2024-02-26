@@ -103,7 +103,7 @@ app.get('/routes', function(req, res){
     })   
 });
 
-//POST Functions
+//POST Routes
 
 app.post('/add-airport', function(req, res) 
 {
@@ -113,7 +113,7 @@ app.post('/add-airport', function(req, res)
     if (isNaN(state))
     {state = 'NULL'}
     // Create the query and run it on the database
-    query1 = `INSERT INTO Airports (airport_id, city, state, country) VALUES ('${data.code}', '${data.city}', ${data.state}, ${data.country})`;
+    query1 = `INSERT INTO Airports (airport_id, city, state, country) VALUES ('${data.airport_id}', '${data.city}', '${data.state}', '${data.country}')`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -142,7 +142,45 @@ app.post('/add-airport', function(req, res)
     })
 });
 
+app.post('/add-customer', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
 
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', 0, CURRENT_DATE())`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            query2 = `select customer_id as Customer_ID, cust_fname as First_Name, cust_lname as Last_Name, 
+            cust_email as Email, cust_phone as Phone_Number, airline_miles as Airline_Miles,  
+            date_format(member_since, '%a %b %d %Y') as Member_Since
+            from Customers;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {                   
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 
 
