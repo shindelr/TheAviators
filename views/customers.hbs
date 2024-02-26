@@ -27,16 +27,23 @@
 </div>
 
  {{!-- Add new customer --}}
-<div id="insert" style="display: block">
-    <form id="addCustomer">
-        <legend><strong>Become a Member</strong></legend>
-          <fieldset class="fields">
-            <label> First Name </label> <input type="text" name="fname">
-            <label> Last Name </label> <input type="text" name="lname">
-            <label> Email </label> <input type="text" name="email">
-            <label> Phone Number </label> <input type="text" name="phone">
-          </fieldset>
-          <input class="btn" type="submit" id="addCustomer" value="Add Customer">
-          <input class="btn" type="button" value="Cancel">
-	</form> <!--add new customer-->
-</div><!-- insert -->
+<h2>Become an Aviation Member</h2>
+<p>Fill out the infomation below to become a member</p>
+<form id="add-customer">
+    <label for="input-fname">First Name: </label>
+    <input type="text" name="input-fname" id="input-fname">
+    
+    <label for="input-lname">Last Name: </label>
+    <input type="text" name="input-lname" id="input-lname">
+
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email">
+
+    <label for="input-number">Phone Number: </label>
+    <input type="text" name="input-number" id="input-number">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_customer.js"></script>
