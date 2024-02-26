@@ -1,3 +1,5 @@
+//This code was adopted from the nodejs-starter-app
+
 // Get the objects we need to modify
 let addAirportForm = document.getElementById('add-airport');
 
@@ -76,10 +78,10 @@ addRowToTable = (data) => {
     let countryCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    codeCell.innerText = newRow.airport_id;
-    cityCell.innerText = newRow.city;
-    stateCell.innerText = newRow.state;
-    countryCell.innerText = newRow.country;
+    codeCell.innerText = newRow.Airport_Code;
+    cityCell.innerText = newRow.City;
+    stateCell.innerText = newRow.State;
+    countryCell.innerText = newRow.Country;
 
     // Add the cells to the row 
     row.appendChild(codeCell);
