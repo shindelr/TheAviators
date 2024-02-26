@@ -1,6 +1,6 @@
 -- Authors: Alma Valenzuela, Robin Shindelman
 -- Date Created: 2024-02-07
--- Last Modified: 2024-02-25, 8:24PM CST by Alma
+-- Last Modified: 2024-02-08, 1:10am CST by Alma
 
 -- Contained in this file are The Aviators' (Formerly Known As Team 31!) data
 -- definition queries. The file is neatly structured into two sections concerned
@@ -21,8 +21,8 @@ cust_fname      varchar(45) not null,
 cust_lname      varchar(45) not null,
 cust_email      varchar(145) not null,
 cust_phone      varchar(45) not null,
-airline_miles   int default 0,
-member_since    date default GETDATE(),
+airline_miles   int,
+member_since    date,
 unique key (customer_id)
 );
 
