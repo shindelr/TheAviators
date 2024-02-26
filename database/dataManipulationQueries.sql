@@ -21,12 +21,12 @@ values (:customer_id_input, :route_id_input, :jet_id_input, :price_input, :fligh
 
 -- Create new entry for a Route
 insert into Routes (route_id, origin_loc, destination_loc, distance, times_flown)
-values (:route_id_input, :origin_loc_input, :destination_loc_input, :distance_input, :times_flown_input);
+values (:route_id_input, :origin_loc_input, :destination_loc_input, :distance_input, 0);
 
 -- Create new entry for a Customer
 insert into Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since)
-values (:cust_fname_input, :cust_lname_input, :cust_email_input, :cust_phone_input, 0, (CURRENT_DATE));
--- Not sure how to auto populate as today's date, but I'm sure we'll figure it out.
+values (:cust_fname_input, :cust_lname_input, :cust_email_input, :cust_phone_input, 0, CURRENT_DATE());
+-- Not sure how to auto populate as today's date, but I'm sure we'll figure it out --> use CURRENT_DATE
 
 -- Create new entry for an Airport
 insert into Airports (airport_id, city, state, country)
