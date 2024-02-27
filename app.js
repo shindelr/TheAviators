@@ -96,15 +96,26 @@ app.get('/routes', function(req, res){
     destination_loc AS Destination, distance AS Distance, 
     times_flown AS Times_Flown 
     from Routes;`;
-    // let airportQuery = 'Airports.airport_id;';
-    db.pool.query(routesQuery, function(error, rows, fields){
-        console.log(rows)
-        res.render('routes', {data: rows});       
-    })   
+    let airportQuery = `select airport_id from Airports;`;
+
+    db.pool.query(routesQuery, function(error1, rows, fields1){
+        console.log(rows);
+        let routes = rows
+        db.pool.query(airportQuery, function(error2, rows, fields2){
+            console.log(rows);
+            let airports = rows
+
+        res.render('routes', {
+                    data: routes, 
+                    airportsData: airports
+            });
+        });
+    });
 });
 
 //POST Routes
 
+// INSERT Airport
 app.post('/add-airport', function(req, res) 
 {
     let data = req.body;
@@ -142,13 +153,14 @@ app.post('/add-airport', function(req, res)
     })
 });
 
+// INSERT Customer
 app.post('/add-customer', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', 0, CURRENT_DATE())`;
+    query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', ${0}, ${CURRENT_DATE()})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -182,10 +194,41 @@ app.post('/add-customer', function(req, res)
     })
 });
 
-
-
-
-
+// INSERT Route
+app.post('/add-route', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Routes (route_id, origin_loc, destination_loc, distance, times_flown) 
+    VALUES ('${data.route_id}', '${data.origin_loc}', '${data.destination_loc}', '${data.distance}', ${0})`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            query2 = `select route_id AS Route_Number, origin_loc AS Origin,
+            destination_loc AS Destination, distance AS Distance, 
+            times_flown AS Times_Flown 
+            from Routes;`;
+            db.pool.query(query2, function(error, rows, fields){
+                // If there was an error on the second query, send a 400
+                if (error) {                    
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 
 
