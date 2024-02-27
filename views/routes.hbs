@@ -2,7 +2,7 @@
 
   {{!-- Browse Routes --}}
 <div id="browseRoutes">
-<table border="1" cellpadding="5">
+<table id = "routes-table" border="1" cellpadding="5">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -34,24 +34,23 @@
     <input type="number" name="input-id" id="input-id">
     
     <label for="input-origin">Origin: </label>
-    <select name="airport_id">
+    <select name="airport_id" id = "input-origin">
       <option>Choose Origin Airport</option>
-        {{#each data}}
+        {{#each airportsData}}
           <option>{{this.airport_id}}</option>
         {{/each}}
     </select>
 
     <label for="input-destination">Destination: </label>
-    <select name="airport_id">
+    <select name="airport_id" id = "input-destination">
       <option>Choose Destination Airport</option>
-        {{#each data}}
+        {{#each airportsData}}
           <option>{{this.airport_id}}</option>
         {{/each}}
     </select>
-
-
+    
     <label for="input-distance">Distance: </label>
-    <input type="number" name="input-age" id="input-age">
+    <input type="number" name="input-distance" id="input-distance">
 
     <input type="submit">
 </form>
