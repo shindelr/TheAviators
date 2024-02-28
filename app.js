@@ -1,4 +1,5 @@
 // Main entry point to our web application
+// The following code was adapted from the CS340 nodejs-starter-app
 
 // SETUP
 // Server setup 
@@ -230,7 +231,36 @@ app.post('/add-route', function(req, res)
     })
 });
 
+// DELETE Routes
 
+app.delete('/delete-route/', function(req,res,next){
+  let data = req.body;
+  let routeID = parseInt(data.id);
+// delete references to the deleted route from Routes and Tickets table
+  let deleteTickets = `DELETE FROM Tickets WHERE pid = ?`;
+  let deleteRoutes= `DELETE FROM Routes WHERE id = ?`;
+
+
+        // Run the 1st query
+        db.pool.query(deleteTickets, [routeID], function(error, rows, fields){
+            if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+            else
+            {
+                // If no errors found, run this next query
+                db.pool.query(deleteRoutes, [routeID], function(error, rows, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.sendStatus(204);
+                    }
+                })
+            }
+})});
 
 
 // LISTENER
