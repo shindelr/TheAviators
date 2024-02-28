@@ -56,7 +56,9 @@ app.get('/jets', function(req, res){
 
 // Browse Tickets
 app.get('/tickets', function(req, res){
-    let query = `select 
+    // Variety of queries to get all the necessary dropdowns populated.
+    // Doing this will helps with creating new entries in the interesection table
+    let ticketQuery = `select 
                 ticket_id as \`Ticket Number\`, 
                 Customers.cust_fname as \`First Name\`, 
                 Customers.cust_lname as \`Last Name\`, 
@@ -66,9 +68,28 @@ app.get('/tickets', function(req, res){
                 date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
                 from Tickets 
                 left join Customers on Tickets.customer_id = Customers.customer_id;`;
-    db.pool.query(query, function(error, rows, fields){
-        console.log(rows)
-        res.render('tickets', {data: rows});
+
+    let customerQuery = `select cust_fname, cust_lname from Customers;`;
+    let routeQuery = `select route_id from Routes;`;
+    let jetQuery = `select jet_id from Jets;`;
+
+    db.pool.query(ticketQuery, function(error, rows, fields){
+        let ticketRows = rows;
+        db.pool.query(customerQuery, function(error, rows, fields){
+            let custRows = rows;
+            db.pool.query(routeQuery, function(error, rows, fields){
+                let routeRows = rows;
+                db.pool.query(jetQuery, function(error, rows, fields){
+                    let jetRows = rows;
+                    res.render('tickets', {
+                                            ticketData: ticketRows,
+                                            custData: custRows,
+                                            routeData: routeRows,
+                                            jetData: jetRows
+                                        });
+                })
+            })
+        })     
     })
 });
 
@@ -178,7 +199,13 @@ app.post('/add-model-ajax', function(req, res){
     })
 })
 
+// Create a new Ticket
+app.post('/add-ticket-ajax', function(req, res){
+    let data = req.body
 
+
+
+})
 
 
 // LISTENER

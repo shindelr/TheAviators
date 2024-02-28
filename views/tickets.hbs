@@ -16,20 +16,19 @@
 </script>
 
 
-
 {{!-- Browse tickets --}}
 <div id="browseTickets">
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" id="ticketTable">
     <thead>
         <tr>
-        {{#each data.[0]}}
+        {{#each ticketData.[0]}}
             <th>{{@key}}</th>
         {{/each}}
             <th></th>
         </tr>
     </thead>
     <tbody>
-    {{#each data}}
+    {{#each ticketData}}
         <tr>
             <td>{{this.[Ticket Number]}}</td>
             <td>{{this.[First Name]}}</td>
@@ -48,13 +47,28 @@
 {{!-- Create a Ticket form --}}
 <div id="createTicket">
     <h4>Create a new Ticket</h4>
-    <form>
+    <form id="createTicketForm">
         <fieldset>
-            <label>Customer ID</label> <input type="number" name="customer_id">
-            <label>Route ID</label> <input type="number" name="route_id">
-            <label>Jet ID</label> <input type="text" name="jet_id">
-            <label>Price</label> <input type="number" name="price">
-            <label>Flight Date</label> <input type="date" name="flight_date">
+            <label> Customer </label><select name="cust_id" id="custIDInput">
+                <option>Choose a customer</option>
+                {{#each custData}}
+                <option>{{this.cust_fname}} {{this.cust_lname}}</option>
+                {{/each}}
+            </select>
+            <label> Route ID </label><select name="route_id" id="routeIDInput">
+                <option>Choose a route</option>
+                {{#each routeData}}
+                <option>{{this.route_id}}</option>
+                {{/each}}
+            </select>
+            <label> Jet ID </label><select name="jet_id" id="jetIDInput">
+                <option>Choose a route</option>
+                {{#each jetData}}
+                <option>{{this.jet_id}}</option>
+                {{/each}}
+            </select>
+            <label> Price </label> <input type="number" name="price" id="priceInput">
+            <label> Flight Date </label> <input type="date" name="flight_date" id="flightDateInput">
         </fieldset>
         <button type="submit">Create!</button>
     </form>
@@ -72,21 +86,21 @@
             <label>Customer First Name</label>
                 <select>
                     <option>First Name</option>
-                    {{#each data}}
+                    {{#each ticketData}}
                     <option>{{this.[First Name]}}</option>
                     {{/each}}
                 </select>
             <label>Customer Last Name</label> 
                 <select>
                     <option>Last Name</option>
-                    {{#each data}}
+                    {{#each ticketData}}
                     <option>{{this.[Last Name]}}</option>
                     {{/each}}
                 </select>
             <label> Route ID </label> 
                 <select name="route_id">
                     <option>Choose a Route</option>
-                    {{#each data}}
+                    {{#each ticketData}}
                     <option>{{this.[Route Number]}}</option>
                     {{/each}}
                 </select>
@@ -94,7 +108,7 @@
             <label>Jet ID</label> 
                 <select>
                     <option>Choose a Jet ID</option>
-                    {{#each data}}
+                    {{#each ticketData}}
                     <option>{{this.[Jet ID]}}</option>
                     {{/each}}
                     </select>
