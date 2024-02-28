@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-PORT = 5001  // Dev PORT
+PORT = 5003  // Dev PORT
 
 // Template (handlebars) setup
 const {engine} = require('express-handlebars');
@@ -40,10 +40,10 @@ app.get('/jets', function(req, res){
 
 
     db.pool.query(jetQuery, function(error1, rows, fields1){
-        console.log(rows);
+        // console.log(rows);
         let rows1 = rows
         db.pool.query(modelQuery, function(error2, rows, fields2){
-            console.log(rows);
+            // console.log(rows);
             let rows2 = rows
 
         res.render('jets', {
@@ -97,6 +97,54 @@ app.get('/routes', function(req, res){
         res.render('routes', {data: rows});
     })
     
+});
+
+// POST
+
+app.post('/add-jet-ajax', function(req, res){
+    let data = req.body;
+    // May need to do some null handling here
+    console.log(data)
+    insertQuery = `insert into Jets (jet_id, model_id, total_hours, date_acquired) 
+                   values (
+                    '${data.jet_id}', 
+                    (select model_id from Models where model_id = '${data.model_id}'), 
+                    ${data.total_hours}, 
+                    '${data.date_acquired}'
+                    );`; 
+
+    db.pool.query(insertQuery, function(error, rows, fields){
+        // Error handling
+        if (error){
+            console.log(error);
+            res.sendStatus(400);
+        }
+        // Send back the whole table now
+        else {
+            selectQuery = `select 
+                                jet_id, 
+                                Models.make, 
+                                Jets.model_id, 
+                                Models.pass_capacity, 
+                                date_format(Jets.date_acquired, '%a %b %d %Y') as date_acquired, 
+                                Jets.total_hours 
+                           from Jets 
+                                left join Models on Jets.model_id = Models.model_id;`;
+
+            db.pool.query(selectQuery, function(error, rows, fields){
+                // Error handling
+                if (error){
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+
+        }
+    })
+
 });
 
 
