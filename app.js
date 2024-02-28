@@ -241,6 +241,11 @@ app.post('/add-ticket-ajax', function(req, res){
 
 })
 
+// UPDATE Ticket
+app.post('/update-ticket-ajax', function(req, res){
+    
+})
+
 
 // LISTENER
 app.listen(PORT, function(){
