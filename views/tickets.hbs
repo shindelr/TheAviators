@@ -52,7 +52,8 @@
             <label> Customer </label><select name="cust_id" id="custIDInput">
                 <option>Choose a customer</option>
                 {{#each custData}}
-                <option>{{this.cust_fname}} {{this.cust_lname}}</option>
+                {{!-- Drop down will present first/last, but actual value of selection is customer id! --}}
+                <option value="{{this.customer_id}}">{{this.cust_fname}} {{this.cust_lname}}</option>
                 {{/each}}
             </select>
             <label> Route ID </label><select name="route_id" id="routeIDInput">

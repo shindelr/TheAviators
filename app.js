@@ -69,7 +69,7 @@ app.get('/tickets', function(req, res){
                 from Tickets 
                 left join Customers on Tickets.customer_id = Customers.customer_id;`;
 
-    let customerQuery = `select cust_fname, cust_lname from Customers;`;
+    let customerQuery = `select customer_id, cust_fname, cust_lname from Customers;`;
     let routeQuery = `select route_id from Routes;`;
     let jetQuery = `select jet_id from Jets;`;
 
@@ -192,7 +192,7 @@ app.post('/add-model-ajax', function(req, res){
                     res.sendStatus(400);
                 }
                 else {
-                    res.send(rows)
+                    res.send(rows);
                 }
             })
         }
@@ -203,7 +203,41 @@ app.post('/add-model-ajax', function(req, res){
 app.post('/add-ticket-ajax', function(req, res){
     let data = req.body
 
-
+    insertQuery = `insert into Tickets (customer_id, route_id, jet_id, price, flight_date)
+                    values (
+                        (select customer_id from Customers where customer_id = ${data.customer_id}),
+                        (select route_id from Routes where route_id = ${data.route_id}),
+                        (select jet_id from Jets where jet_id = '${data.jet_id}'),
+                        ${data.price},
+                       '${data.flight_date}'
+                    );`;
+    db.pool.query(insertQuery, function(error, rows, fields){
+        if (error){
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            selectQuery = `select 
+            ticket_id as \`Ticket Number\`, 
+            Customers.cust_fname as \`First Name\`, 
+            Customers.cust_lname as \`Last Name\`, 
+            route_id as \`Route Number\`, 
+            jet_id as \`Jet ID\`, 
+            price as Price, 
+            date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+            from Tickets 
+            left join Customers on Tickets.customer_id = Customers.customer_id;`;
+            db.pool.query(selectQuery, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
 
 })
 
