@@ -80,12 +80,16 @@
 {{!-- Create a model form --}}
 <div id="createModel">
     <h5>Create a new Model</h5>
-    <form>
+    <form id="createModelForm">
         <fieldset>
-            <label>Model ID</label> <input type="text" name="model_id">
-            <label>Make</label> <input type="text" name="make">
-            <label>Passenger Capacity</label> <input type="number" name="pass_capacity">
+            <label>Model ID</label> <input type="text" name="model_id" id="createModelIDInput">
+            <label>Make</label> <input type="text" name="make" id="makeInput">
+            <label>Passenger Capacity</label> <input type="number" name="pass_capacity" id="passCapInput">
         </fieldset>
-        <button type="button" onclick="successAlert()">Create!</button>
+        {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
+        <button type="submit">Create!</button>
     </form>
 </div>
+
+{{!-- JS for AJAX --}}
+<script src="./js/add_model.js"></script>

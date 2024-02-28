@@ -99,12 +99,12 @@ app.get('/routes', function(req, res){
     
 });
 
-// POST
+// POST ROUTES
 
+// Create a new Jet
 app.post('/add-jet-ajax', function(req, res){
     let data = req.body;
     // May need to do some null handling here
-    console.log(data)
     insertQuery = `insert into Jets (jet_id, model_id, total_hours, date_acquired) 
                    values (
                     '${data.jet_id}', 
@@ -146,6 +146,39 @@ app.post('/add-jet-ajax', function(req, res){
     })
 
 });
+
+// Create a new Model
+app.post('/add-model-ajax', function(req, res){
+    let data = req.body;
+
+    insertQuery = `insert into Models (model_id, make, pass_capacity)
+                    values (
+                        '${data.model_id}', 
+                        '${data.make}', 
+                        ${data.pass_capacity}
+                        );`;
+
+    db.pool.query(insertQuery, function(error, rows, fields){
+        if (error){
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            selectQuery = `select * from Models`;
+            db.pool.query(selectQuery, function(error, rows, fields){
+                if (error){
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows)
+                }
+            })
+        }
+    })
+})
+
+
 
 
 // LISTENER

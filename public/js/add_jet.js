@@ -21,8 +21,8 @@ addJetForm.addEventListener('submit', function(e){
      
     // Pack the data into an object
     let jetData = {
-        jet_id : jetIDVal,
-        model_id : modelIDVal,
+        jet_id: jetIDVal,
+        model_id: modelIDVal,
         date_acquired: dateVal,
         total_hours: hourVal
     }
@@ -88,6 +88,6 @@ addRowToTable = (jetData) => {
     jetsTable.appendChild(row);
 
     // Added the reload to get the data to fill in properly
-    location.reload();
     alert('Data Sucessfully Entered');
+    location.reload();
 }
