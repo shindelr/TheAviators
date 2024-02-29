@@ -1,6 +1,5 @@
 //The following code is based on the CS340 nodejs-starter-app
 
-
 function deleteRoute(routeID) {
   let link = '/delete-route/';
   let data = {
@@ -17,8 +16,6 @@ function deleteRoute(routeID) {
     }
   });
 }
-
-
 
 function deleteRow(routeID){
 
