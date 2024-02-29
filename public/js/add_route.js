@@ -96,4 +96,8 @@ addRowToTable = (data) => {
     
     // Add the row to the table
     currentTable.appendChild(row);
+    location.reload();
 }
+
+
+
