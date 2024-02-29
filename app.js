@@ -242,8 +242,51 @@ app.post('/add-ticket-ajax', function(req, res){
 })
 
 // UPDATE Ticket
-app.post('/update-ticket-ajax', function(req, res){
-    
+app.put('/update-ticket-ajax', function(req, res, next){
+    let data = req.body;
+    let ticketID = data.ticket_id;
+    let custID = data.customer_id;
+    let routeID = data.route_id;
+    let jet_id = parseInt(data.jet_id);
+    let price = data.price;
+    let flight_date = parseInt(data.flight_date);
+
+    let updateQuery = `update Tickets
+                            set
+                            customer_id = ?,
+                            route_id = ?,
+                            jet_id = ?,
+                            price = ?,
+                            flight_date = ?
+                       where ticket_id = ?;`;
+    let selectQuery =  `select 
+                        ticket_id as \`Ticket Number\`, 
+                        Customers.cust_fname as \`First Name\`, 
+                        Customers.cust_lname as \`Last Name\`, 
+                        route_id as \`Route Number\`, 
+                        jet_id as \`Jet ID\`, 
+                        price as Price, 
+                        date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+                        from Tickets 
+                        left join Customers on Tickets.customer_id = Customers.customer_id;`;
+    db.pool.query(updateQuery, [custID, routeID, jet_id, price, flight_date, ticketID], function(error, rows, fields){
+        // Error handling
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(selectQuery, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
 })
 
 
