@@ -153,29 +153,24 @@ app.post('/add-airport', function(req, res)
     let state = parseInt(data.state);
     if (isNaN(state))
     {state = 'NULL'}
-    // Create the query and run it on the database
+    // Insert new data entry into Airports
     query1 = `INSERT INTO Airports (airport_id, city, state, country) VALUES ('${data.airport_id}', '${data.city}', '${data.state}', '${data.country}')`;
     db.pool.query(query1, function(error, rows, fields){
-        // Check to see if there was an error
         if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else
         {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If no error found, display the Airports table with new data entry
             query2 = `select airport_id as Airport_Code, city as City, 
             state as State, country as Country 
             from Airports;`;
             db.pool.query(query2, function(error, rows, fields){
-                // If there was an error on the second query, send a 400
                 if (error) {               
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else
                 {res.send(rows);}
             })
@@ -186,35 +181,26 @@ app.post('/add-airport', function(req, res)
 // INSERT Customer
 app.post('/add-customer', function(req, res) 
 {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-
-    // Create the query and run it on the database
+    // Insert new data entry into Customers table
     query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', ${0}, ${CURRENT_DATE()})`;
     db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else
         {
+            //If no errors found, display Customers table with new data entry
             query2 = `select customer_id as Customer_ID, cust_fname as First_Name, cust_lname as Last_Name, 
             cust_email as Email, cust_phone as Phone_Number, airline_miles as Airline_Miles,  
             date_format(member_since, '%a %b %d %Y') as Member_Since
             from Customers;`;
             db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
                 if (error) {                   
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else
                 {
                     res.send(rows);
@@ -227,30 +213,27 @@ app.post('/add-customer', function(req, res)
 // INSERT Route
 app.post('/add-route', function(req, res) 
 {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    // Create the query and run it on the database
+    // Insert new data entry in Routes table
     query1 = `INSERT INTO Routes (route_id, origin_loc, destination_loc, distance, times_flown) 
     VALUES ('${data.route_id}', '${data.origin_loc}', '${data.destination_loc}', '${data.distance}', ${0})`;
     db.pool.query(query1, function(error, rows, fields){
-        // Check to see if there was an error
         if (error) {
             console.log(error)
             res.sendStatus(400);
         }
         else
         {
+            // If no errors, display Routes table with new data entry
             query2 = `select route_id AS Route_Number, origin_loc AS Origin,
             destination_loc AS Destination, distance AS Distance, 
             times_flown AS Times_Flown 
             from Routes;`;
             db.pool.query(query2, function(error, rows, fields){
-                // If there was an error on the second query, send a 400
                 if (error) {                    
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else
                 {
                     res.send(rows);
@@ -435,10 +418,11 @@ app.delete('/delete-route/', function(req,res,next){
   let data = req.body;
   let routeID = parseInt(data.id);
 // delete references to the deleted route from Routes and Tickets table
+// might need to revise this later so that entry in Tickets is not deleted, simply set to the default
   let deleteTickets = `DELETE FROM Tickets WHERE route_id = '${routeID}'`;
   let deleteRoutes= `DELETE FROM Routes WHERE route_id = '${routeID}'`;
 
-        // First delete the FK reference to routeID in Tickets. This will change the routeID to the default which is 0000
+        // First delete the FK reference to routeID in Tickets. This should change the routeID to the default which is 0000 - work in progress
         db.pool.query(deleteTickets, [routeID], function(error, rows, fields){
             if (error) {
             console.log(error);
