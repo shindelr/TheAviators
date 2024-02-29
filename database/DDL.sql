@@ -1,13 +1,13 @@
 -- Authors: Alma Valenzuela, Robin Shindelman
 -- Date Created: 2024-02-07
--- Last Modified: 2024-02-08, 1:10am CST by Alma
+-- Last Modified: 2024-02-28 by Alma
 
 -- Contained in this file are The Aviators' (Formerly Known As Team 31!) data
 -- definition queries. The file is neatly structured into two sections concerned
 -- with table creation and sample data insertions. 
 
 
---------------------------- Creation of the schema ----------------------------
+-- ------------------------- Creation of the schema ----------------------------
 -- Drop tables if they already exist in the database to avoid errors
 set foreign_key_checks = 0;
 SET AUTOCOMMIT = 0;
@@ -84,8 +84,8 @@ foreign key (jet_id) references Jets(jet_id) on delete cascade,
 unique key (ticket_id)
 );
 
---------------------------------------------------------------------------------
----------------------------- Sample Data Insertion -----------------------------
+-- ------------------------------------------------------------------------------
+-- -------------------------- Sample Data Insertion -----------------------------
 
 -- Airports
 insert into Airports (airport_id, city, state, country)
