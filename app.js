@@ -232,7 +232,7 @@ app.post('/add-route', function(req, res)
 });
 
 // DELETE Routes
-debugger;
+
 app.delete('/delete-route/', function(req,res,next){
   let data = req.body;
   let routeID = parseInt(data.id);
