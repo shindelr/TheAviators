@@ -1,9 +1,10 @@
 <h3>Browse Tickets</h3>
 {{!-- Scripts --}}
 <script>
-    function showEditForm(){
+    function showEditForm(ticketNumber){
         let form = document.getElementById('ticketEdit');
         form.style.display = 'block';
+        document.getElementById('ticketLabel').textContent = ticketNumber 
     }
     function hideForm(){
         let form = document.getElementById('ticketEdit');
@@ -16,29 +17,28 @@
 </script>
 
 
-
 {{!-- Browse tickets --}}
 <div id="browseTickets">
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" id="ticketTable">
     <thead>
         <tr>
-        {{#each data.[0]}}
+        {{#each ticketData.[0]}}
             <th>{{@key}}</th>
         {{/each}}
             <th></th>
         </tr>
     </thead>
     <tbody>
-    {{#each data}}
+    {{#each ticketData}}
         <tr>
-            <td>{{this.Ticket_Number}}</td>
-            <td>{{this.cust_fname}}</td>
-            <td>{{this.cust_lname}}</td>
-            <td>{{this.route_id}}</td>
-            <td>{{this.jet_id}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.flight_date}}</td>
-            <td><button type="button" onclick="showEditForm()">Edit</button></td>
+            <td value="{{this.[Ticket Number]}}">{{this.[Ticket Number]}}</td>
+            <td>{{this.[First Name]}}</td>
+            <td>{{this.[Last Name]}}</td>
+            <td>{{this.[Route Number]}}</td>
+            <td>{{this.[Jet ID]}}</td>
+            <td>{{this.Price}}</td>
+            <td>{{this.[Flight Date]}}</td>
+            <td><button type="button" onclick="showEditForm({{this.[Ticket Number]}})">Edit</button></td>
         </tr>
     {{/each}}
     </tbody>
@@ -48,57 +48,74 @@
 {{!-- Create a Ticket form --}}
 <div id="createTicket">
     <h4>Create a new Ticket</h4>
-    <form>
+    <form id="createTicketForm">
         <fieldset>
-            <label>Customer ID</label> <input type="number" name="customer_id">
-            <label>Route ID</label> <input type="number" name="route_id">
-            <label>Jet ID</label> <input type="text" name="jet_id">
-            <label>Price</label> <input type="number" name="price">
-            <label>Flight Date</label> <input type="date" name="flight_date">
+            <label> Customer </label><select name="cust_id" id="custIDInput">
+                <option>Choose a customer</option>
+                {{#each custData}}
+                {{!-- Drop down will present first/last, but actual value of selection is customer id! --}}
+                <option value="{{this.customer_id}}">{{this.cust_fname}} {{this.cust_lname}}</option>
+                {{/each}}
+            </select>
+            <label> Route ID </label><select name="route_id" id="routeIDInput">
+                <option>Choose a route</option>
+                {{#each routeData}}
+                <option>{{this.route_id}}</option>
+                {{/each}}
+            </select>
+            <label> Jet ID </label><select name="jet_id" id="jetIDInput">
+                <option>Choose a route</option>
+                {{#each jetData}}
+                <option>{{this.jet_id}}</option>
+                {{/each}}
+            </select>
+            <label> Price </label> <input type="number" name="price" id="priceInput">
+            <label> Flight Date </label> <input type="date" name="flight_date" id="flightDateInput">
         </fieldset>
-        <button type="button" onclick="successAlert()">Create!</button>
+        <button type="submit">Create!</button>
     </form>
 </div>
 
+{{!-- Create AJAX --}}
+<script src="./js/add_ticket.js"></script>
+
 {{!-- Update/Edit a Ticket form --}}
 <div id="ticketEdit" style="display: none">
-    <h5>Edit a Ticket</h5>
+    <h5>Change an existing ticket</h5>
     <form id="ticketEditForm">
         <fieldset>
-            <label>Ticket ID: {selected ticket}</label> {{!-- <input type="number" name="ticket_id" > --}}
-            <label>Customer First Name</label>
-                <select>
-                    <option>First Name</option>
-                    {{#each data}}
-                    <option>{{this.cust_fname}}</option>
+            <label id="ticketLabel"></label>
+            <label>Customer</label>
+                <select name="editCustSelection" id="editCustIDInput">
+                    <option>Choose a customer</option>
+                    {{#each custData}}
+                    {{!-- Drop down will present first/last, but actual value of selection is customer id! --}}
+                    <option value="{{this.customer_id}}">{{this.cust_fname}} {{this.cust_lname}}</option>
                     {{/each}}
                 </select>
-            <label>Customer Last Name</label> 
-                <select>
-                    <option>Last Name</option>
-                    {{#each data}}
-                    <option>{{this.cust_lname}}</option>
-                    {{/each}}
-                </select>
+
             <label> Route ID </label> 
-                <select name="route_id">
+                <select name="route_id" id="editRouteIDInput">
                     <option>Choose a Route</option>
-                    {{#each data}}
+                    {{#each routeData}}
                     <option>{{this.route_id}}</option>
                     {{/each}}
                 </select>
 
             <label>Jet ID</label> 
-                <select>
-                    <option>Choose a Jet ID</option>
-                    {{#each data}}
+                <select name="jet_id" id="editJetIDInput">
+                    <option>Choose a Jet</option>
+                    {{#each jetData}}
                     <option>{{this.jet_id}}</option>
                     {{/each}}
-                    </select>
                 </select>
-            <label>Price</label> <input type="number" name="price">
-            <label>Flight Date</label> <input type="date" name="flight_date">
+                
+            <label>Price</label> <input type="number" name="price" id="editPriceInput">
+            <label>Flight Date</label> <input type="date" name="flight_date" id="editFlightDateInput">
         </fieldset>
-        <button type="button" onclick="hideForm()">Submit!</button>
+        <button type="submit" onclick="hideForm()">Submit!</button>
     </form>
 </div>
+
+{{!-- Update AJAX --}}
+<script src="./js/update_ticket.js"></script>

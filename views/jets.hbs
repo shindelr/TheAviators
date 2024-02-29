@@ -8,7 +8,7 @@
 
 {{!-- Browse Jets Section --}}
 <div id="browseJets">
-    <table border="1" cellpadding="5">
+    <table border="1" cellpadding="5" id="jetsTable">
         <thead>
             <tr>
             {{#each jetData.[0]}}
@@ -34,7 +34,7 @@
 {{!-- Browse Models Section --}}
 <div id="browseModels">
     <h3>Model Types</h3>
-    <table border="1" cellpadding="5">
+    <table border="1" cellpadding="5" id="modelsTable">
         <thead>
             <tr>
             {{#each modelData.[0]}}
@@ -45,8 +45,8 @@
         <tbody>
         {{#each modelData}}
             <tr>
-                <td>{{this.make}}</td>
                 <td>{{this.model_id}}</td>
+                <td>{{this.make}}</td>
                 <td>{{this.pass_capacity}}</td>
             </tr>
         {{/each}}
@@ -57,31 +57,39 @@
 {{!-- Create a jet form --}}
 <div id="createJet">
     <h4>Create a new Jet</h4>
-    <form>
+    <form id="createJetForm">
         <fieldset>
-            <label>Jet ID</label> <input type="text" name="jet_id" >
-            <label>Model ID</label> <select name="model_id">
+            <label>Jet ID</label> <input type="text" name="jet_id" id="jetIDInput">
+            <label>Model ID</label> <select name="model_id" id="modelIDInput">
                 <option>Choose a model</option>
                 {{#each modelData}}
                 <option>{{this.model_id}}</option>
                 {{/each}}
                 </select>
-            <label>Date Acquired</label> <input type="date" name="date_acquired">
-            <label>Total Hours</label> <input type="number" name="total_hours">
+            <label>Date Acquired</label> <input type="date" name="date_acquired" id="dateInput">
+            <label>Total Hours</label> <input type="number" name="total_hours" id="hoursInput">
         </fieldset>
-        <button type="button" onclick="successAlert()">Create!</button>
+        {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
+        <button type="submit">Create!</button>
     </form>
 </div>
+
+{{!-- JS for AJAX manipulation --}}
+<script src="./js/add_jet.js"></script>
 
 {{!-- Create a model form --}}
 <div id="createModel">
     <h5>Create a new Model</h5>
-    <form>
+    <form id="createModelForm">
         <fieldset>
-            <label>Model ID</label> <input type="text" name="model_id">
-            <label>Make</label> <input type="text" name="make">
-            <label>Passenger Capacity</label> <input type="number" name="pass_capacity">
+            <label>Model ID</label> <input type="text" name="model_id" id="createModelIDInput">
+            <label>Make</label> <input type="text" name="make" id="makeInput">
+            <label>Passenger Capacity</label> <input type="number" name="pass_capacity" id="passCapInput">
         </fieldset>
-        <button type="button" onclick="successAlert()">Create!</button>
+        {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
+        <button type="submit">Create!</button>
     </form>
 </div>
+
+{{!-- JS for AJAX --}}
+<script src="./js/add_model.js"></script>
