@@ -74,12 +74,12 @@ FOREIGN KEY (destination_loc) REFERENCES Airports(airport_id) on delete cascade
 create or replace table Tickets (
 ticket_id       int auto_increment not null primary key,
 customer_id     int not null,
-route_id        int not null,
+route_id        int not null default 0000,
 jet_id          varchar(45) not null,
 price           decimal(19,2) not null,
 flight_date     date not null,
 foreign key (customer_id) references Customers(customer_id)on delete cascade,
-foreign key (route_id) references Routes(route_id)on delete cascade,
+foreign key (route_id) references Routes(route_id)on delete set default,
 foreign key (jet_id) references Jets(jet_id) on delete cascade,
 unique key (ticket_id)
 );
