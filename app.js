@@ -247,9 +247,9 @@ app.put('/update-ticket-ajax', function(req, res, next){
     let ticketID = data.ticket_id;
     let custID = data.customer_id;
     let routeID = data.route_id;
-    let jet_id = parseInt(data.jet_id);
+    let jet_id = data.jet_id;
     let price = data.price;
-    let flight_date = parseInt(data.flight_date);
+    let flight_date = data.flight_date;
 
     let updateQuery = `update Tickets
                             set

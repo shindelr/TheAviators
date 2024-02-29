@@ -42,7 +42,7 @@ ticketEditForm.addEventListener('submit', function(e){
 
     // AJAX Section
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/update-ticket-ajax", true);
+    xhttp.open("PUT", "/update-ticket-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     
     xhttp.onreadystatechange = () => {
@@ -75,4 +75,5 @@ function updateRow(data, ticketID){
             }
         }
     }
+    location.reload()
 }
