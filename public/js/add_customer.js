@@ -59,7 +59,6 @@ addCustomerForm.addEventListener("submit", function (e) {
 
 })
 
-
 // Creates a single row from an Object representing a single record from 
 // bsg_people
 addRowToTable = (data) => {
