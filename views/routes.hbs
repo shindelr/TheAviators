@@ -1,4 +1,4 @@
-//The following code was adopted from the CS340 nodejs-starter-app
+{{!--The following code was adopted from the CS340 nodejs-starter-app --}}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -18,17 +18,19 @@
     </thead>
     <tbody>
         {{#each data}}
-        <tr>
+        <tr data-value = {{this.Route_Number}}>
             <td>{{this.Route_Number}}</td>
             <td>{{this.Origin}}</td>
             <td>{{this.Destination}}</td>
             <td>{{this.Distance}}</td>
             <td>{{this.Times_Flown}}</td>
+            <td><button onclick="deleteRoute({{this.Route_Number}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 </div>
+<script src="./js/delete_route.js"></script>
 
 {{!-- Form to add a record to the table  --}}
 <h2>Create new Route</h2>
@@ -64,21 +66,4 @@
  
 
 
-  {{!-- Delete Route --}}
-<div id="delete" style="display: block">
-  <form id="deleteRoute">
-    <legend><strong>Delete Route</strong></legend>
-      <fieldset class="fields">
-        <label> Route ID </label> 
-          <select name="route_id">
-            <option>Choose a Route</option>
-           {{#each data}}
-              <option>{{this.route_id}}</option>
-            {{/each}}
-          </select>
-      </fieldset>
-      <input class="btn" type="submit" id="deleteRoute" value="Remove Route">
-      <input class="btn" type="button" value="Cancel">
-</form> <!--delete route-->
-</div><!-- delete -->
 
