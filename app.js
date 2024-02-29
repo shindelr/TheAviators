@@ -232,25 +232,23 @@ app.post('/add-route', function(req, res)
 });
 
 // DELETE Routes
-
+debugger;
 app.delete('/delete-route/', function(req,res,next){
   let data = req.body;
   let routeID = parseInt(data.id);
 // delete references to the deleted route from Routes and Tickets table
-  let deleteTickets = `DELETE FROM Tickets WHERE pid = ?`;
-  let deleteRoutes= `DELETE FROM Routes WHERE id = ?`;
+  let deleteTickets = `DELETE FROM Tickets WHERE route_id = '${routeID}'`;
+  let deleteRoutes= `DELETE FROM Routes WHERE route_id = '${routeID}'`;
 
-
-        // Run the 1st query
+        // First delete the FK reference to routeID in Tickets. This will change the routeID to the default which is 0000
         db.pool.query(deleteTickets, [routeID], function(error, rows, fields){
             if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
             }
             else
             {
-                // If no errors found, run this next query
+                // If no errors found, now delete the route in the Routes table
                 db.pool.query(deleteRoutes, [routeID], function(error, rows, fields) {
                     if (error) {
                         console.log(error);
