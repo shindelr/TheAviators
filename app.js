@@ -183,7 +183,9 @@ app.post('/add-customer', function(req, res)
 {
     let data = req.body;
     // Insert new data entry into Customers table
-    query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', ${0}, ${CURRENT_DATE()})`;
+    // query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', ${0}, ${CURRENT_DATE()})`;
+    // RS: Fixed date problem, no need for ${} because it's a SQL function itself.
+    query1 = `INSERT INTO Customers (cust_fname, cust_lname, cust_email, cust_phone, airline_miles, member_since) VALUES ('${data.cust_fname}', '${data.cust_lname}', '${data.cust_email}', '${data.cust_phone}', 0, CURRENT_DATE)`;
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
             console.log(error)
@@ -242,8 +244,6 @@ app.post('/add-route', function(req, res)
         }
     })
 });
-
-// POST ROUTES
 
 // Create a new Jet
 app.post('/add-jet-ajax', function(req, res){
@@ -364,6 +364,7 @@ app.post('/add-ticket-ajax', function(req, res){
 
 })
 
+// PUT ROUTE
 // UPDATE Ticket
 app.put('/update-ticket-ajax', function(req, res, next){
     let data = req.body;
