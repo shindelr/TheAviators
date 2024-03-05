@@ -23,7 +23,6 @@ app.set('view engine', '.hbs');
 // Database connection
 var db = require('./database/db_connector')
 
-
 // ROUTES
 // GET Functions
 // Display Home page
