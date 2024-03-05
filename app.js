@@ -344,16 +344,30 @@ app.post('/add-ticket-ajax', function(req, res){
             res.sendStatus(400);
         }
         else {
+            // selectQuery = `select 
+            // ticket_id as \`Ticket Number\`, 
+            // Customers.cust_fname as \`First Name\`, 
+            // Customers.cust_lname as \`Last Name\`, 
+            // route_id as \`Route Number\`, 
+            // jet_id as \`Jet ID\`, 
+            // price as Price, 
+            // date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+            // from Tickets 
+            // left join Customers on Tickets.customer_id = Customers.customer_id;`;
             selectQuery = `select 
-            ticket_id as \`Ticket Number\`, 
+            Tickets.ticket_id as \`Ticket Number\`, 
             Customers.cust_fname as \`First Name\`, 
             Customers.cust_lname as \`Last Name\`, 
-            route_id as \`Route Number\`, 
-            jet_id as \`Jet ID\`, 
-            price as Price, 
-            date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+            Tickets.route_id as \`Route Number\`, 
+            Routes.origin_loc as Origin,
+            Routes.destination_loc as Destination,
+            Tickets.jet_id as \`Jet ID\`, 
+            Tickets.price as Price, 
+            date_format(Tickets.flight_date, '%a %b %d %Y') as \`Flight Date\` 
             from Tickets 
-            left join Customers on Tickets.customer_id = Customers.customer_id;`;
+            left join Customers on Tickets.customer_id = Customers.customer_id
+            left join Routes on Tickets.route_id = Routes.route_id;`;
+
             db.pool.query(selectQuery, function(error, rows, fields){
                 if (error) {
                     console.log(error);
