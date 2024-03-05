@@ -61,21 +61,25 @@ app.get('/tickets', function(req, res){
     // Variety of queries to get all the necessary dropdowns populated.
     // Doing this will helps with creating new entries in the interesection table
     let ticketQuery = `select 
-                ticket_id as \`Ticket Number\`, 
+                Tickets.ticket_id as \`Ticket Number\`, 
                 Customers.cust_fname as \`First Name\`, 
                 Customers.cust_lname as \`Last Name\`, 
-                route_id as \`Route Number\`, 
-                jet_id as \`Jet ID\`, 
-                price as Price, 
-                date_format(flight_date, '%a %b %d %Y') as \`Flight Date\` 
+                Tickets.route_id as \`Route Number\`, 
+                Routes.origin_loc as Origin,
+                Routes.destination_loc as Destination,
+                Tickets.jet_id as \`Jet ID\`, 
+                Tickets.price as Price, 
+                date_format(Tickets.flight_date, '%a %b %d %Y') as \`Flight Date\` 
                 from Tickets 
-                left join Customers on Tickets.customer_id = Customers.customer_id;`;
+                left join Customers on Tickets.customer_id = Customers.customer_id
+                left join Routes on Tickets.route_id = Routes.route_id;`;
 
     let customerQuery = `select customer_id, cust_fname, cust_lname from Customers;`;
-    let routeQuery = `select route_id from Routes;`;
+    let routeQuery = `select route_id, origin_loc, destination_loc from Routes;`;
     let jetQuery = `select jet_id from Jets;`;
 
     db.pool.query(ticketQuery, function(error, rows, fields){
+        console.log(rows)
         let ticketRows = rows;
         db.pool.query(customerQuery, function(error, rows, fields){
             let custRows = rows;

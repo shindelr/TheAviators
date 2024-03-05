@@ -1,6 +1,20 @@
 <h3>Browse Tickets</h3>
 {{!-- Scripts --}}
 <script>
+    // Negative number constraint
+    let createPriceInput = document.getElementById('priceInput')
+    let editPriceInput = document.getElementById('editPriceInput')
+    createPriceInput.addEventListener('input', function(event){
+        if (createPriceInput.value < 0){
+            createPriceInput.value = 0;
+        }
+    });
+    editPriceInput.addEventListener('input', function(event){
+        if (editPriceInput.value < 0){
+            editPriceInput.value = 0;
+        }
+    });
+
     function showEditForm(ticketNumber){
         // Also hides the create form
         let editForm = document.getElementById('ticketEdit');
@@ -8,8 +22,8 @@
         let title = document.getElementById("ticketEditTitle")
         createForm.style.display = 'none';
         editForm.style.display = 'block';
-        // document.getElementById('ticketLabel').textContent = ticketNumber
-        title.textContent = `Editing ticket number ${ticketNumber}:`
+        document.getElementById('ticketLabel').textContent = ticketNumber
+        title.textContent = `Editing ticket number ${ticketNumber}:`     
     }
 
     function showCreateForm(){
@@ -34,6 +48,8 @@
         alert('Submitted')
     }
 
+    
+
 </script>
 
 
@@ -55,6 +71,8 @@
             <td>{{this.[First Name]}}</td>
             <td>{{this.[Last Name]}}</td>
             <td>{{this.[Route Number]}}</td>
+            <td>{{this.Origin}}</td>
+            <td>{{this.Destination}}</td>
             <td>{{this.[Jet ID]}}</td>
             <td>{{this.Price}}</td>
             <td>{{this.[Flight Date]}}</td>
@@ -77,19 +95,19 @@
                 <option value="{{this.customer_id}}">{{this.cust_fname}} {{this.cust_lname}}</option>
                 {{/each}}
             </select>
-            <label> Route ID </label><select name="route_id" id="routeIDInput">
+            <label> Route </label><select name="route_id" id="routeIDInput">
                 <option>Choose a route</option>
                 {{#each routeData}}
-                <option>{{this.route_id}}</option>
+                <option value="{{this.route_id}}">{{this.origin_loc}} to {{this.destination_loc}}</option>
                 {{/each}}
             </select>
             <label> Jet ID </label><select name="jet_id" id="jetIDInput">
-                <option>Choose a route</option>
+                <option>Choose a Jet</option>
                 {{#each jetData}}
                 <option>{{this.jet_id}}</option>
                 {{/each}}
             </select>
-            <label> Price </label> <input type="number" name="price" id="priceInput">
+            <label> Price </label> <input type="number" min="0" name="price" id="priceInput">
             <label> Flight Date </label> <input type="date" name="flight_date" id="flightDateInput">
         </fieldset>
         <button type="submit">Create</button>
@@ -114,11 +132,11 @@
                     {{/each}}
                 </select>
 
-            <label> Route ID </label> 
+            <label> Route </label> 
                 <select name="route_id" id="editRouteIDInput">
                     <option>Choose a Route</option>
                     {{#each routeData}}
-                    <option>{{this.route_id}}</option>
+                    <option value="{{this.route_id}}">{{this.origin_loc}} to {{this.destination_loc}}</option>
                     {{/each}}
                 </select>
 
@@ -130,7 +148,7 @@
                     {{/each}}
                 </select>
                 
-            <label>Price</label> <input type="number" name="price" id="editPriceInput">
+            <label>Price</label> <input type="number" min="0" name="price" id="editPriceInput">
             <label>Flight Date</label> <input type="date" name="flight_date" id="editFlightDateInput">
         </fieldset>
         <button type="submit" onclick="hideFormSuccessful()" id="submitButton">Submit</button>

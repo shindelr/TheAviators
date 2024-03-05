@@ -67,7 +67,7 @@
                 {{/each}}
                 </select>
             <label>Date Acquired</label> <input type="date" name="date_acquired" id="dateInput">
-            <label>Total Hours</label> <input type="number" name="total_hours" id="hoursInput">
+            <label>Total Hours</label> <input type="number" min="0" name="total_hours" id="hoursInput">
         </fieldset>
         {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
         <button type="submit">Create!</button>
@@ -84,7 +84,7 @@
         <fieldset>
             <label>Model ID</label> <input type="text" name="model_id" id="createModelIDInput">
             <label>Make</label> <input type="text" name="make" id="makeInput">
-            <label>Passenger Capacity</label> <input type="number" name="pass_capacity" id="passCapInput">
+            <label>Passenger Capacity</label> <input type="number" min="0" name="pass_capacity" id="passCapInput">
         </fieldset>
         {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
         <button type="submit">Create!</button>
