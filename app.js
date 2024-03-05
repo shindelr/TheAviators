@@ -64,6 +64,7 @@ app.get('/tickets', function(req, res){
                 Tickets.ticket_id as \`Ticket Number\`, 
                 Customers.cust_fname as \`First Name\`, 
                 Customers.cust_lname as \`Last Name\`, 
+                Tickets.route_id as \`Route Number\`, 
                 Routes.origin_loc as Origin,
                 Routes.destination_loc as Destination,
                 Tickets.jet_id as \`Jet ID\`, 
