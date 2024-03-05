@@ -11,7 +11,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-PORT = 5003  // Dev PORT
+// PORT = 5003  // Forever Port, dude I can't figure out how to kill it
+PORT = 5005 // Dev port
 
 // Template (handlebars) setup
 const {engine} = require('express-handlebars');
