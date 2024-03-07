@@ -15,4 +15,7 @@
 </p>
 
 
-
+{{!-- Since we're having Express serve all our static files from the public
+directory (see line 12 in App.js), we can shorten the relative path to just
+/images/blah.jpg, including 'public' or anything else will mess it up. --}}
+<img src="/images/Aviators_Schema.jpg">

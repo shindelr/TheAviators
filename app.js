@@ -7,9 +7,9 @@ var express = require('express');
 var app = express()
 
 // Configuring to handle JSON and form data
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use(express.static('public'))
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('public'));
 
 // PORT = 5003  // Forever Port, dude I can't figure out how to kill it
 PORT = 5005 // Dev port
