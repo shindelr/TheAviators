@@ -62,13 +62,7 @@ a:visited {
 
 /* HEADER SECTION END */
 /* --------------------------------- */
-/* GENERAL CONTENT & FOOTER SECTION START */
-
-/* This weird div was needed to make the footer not float? */
-/* .all-content {
-    min-height:100%;
-    position:relative;
-} */
+/* GENERAL CONTENT SECTION START */
 
 .content {
     padding-top: 150px;
@@ -78,16 +72,7 @@ a:visited {
     height: 100%;
 }
 
-/* .footer {
-    background-color: #F8F6F4;
-    height: 75px;
-    margin-top: 80px;
-    width:100%;
-    position: absolute;
-    bottom: 0;
-} */
-
-/* GENERAL CONTENT & FOOTER SECTION END */
+/* GENERAL CONTENT SECTION END */
 /* --------------------------------- */
 /* INDEX SECTION START */
 
