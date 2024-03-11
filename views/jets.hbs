@@ -1,13 +1,13 @@
 <div class="jets-models-title">
-    <h3>Browse Jets and Models</h3>
+    <h3>Jets & Models</h3>
 </div>
+
 <script>
     function successAlert(){
         alert('Submitted')
     }
 </script>
 
-{{!-- <div class="jet-model-page-container"> --}}
 
 <div class="jets-models-tables-container">
 {{!-- Browse Jets Section --}}
@@ -79,7 +79,7 @@
             <label>Date Acquired</label> <input type="date" name="date_acquired" id="dateInput">
             <label>Total Hours</label> <input type="number" min="0" name="total_hours" id="hoursInput">
         </fieldset>
-        <button type="submit">Create!</button>
+        <button type="submit">Create</button>
     </form>
 </div>
 
@@ -95,12 +95,11 @@
             <label>Make</label> <input type="text" name="make" id="makeInput">
             <label>Passenger Capacity</label> <input type="number" min="0" name="pass_capacity" id="passCapInput">
         </fieldset>
-        <button type="submit">Create!</button>
+        <button type="submit">Create</button>
     </form>
 </div>
 
 </div>{{!--End tag for the create forms--}}
-{{!-- </div>End tag for whole page container --}}
 
 {{!-- JS for AJAX --}}
 <script src="./js/add_model.js"></script>

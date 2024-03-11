@@ -1,4 +1,6 @@
-<h3>Browse Tickets</h3>
+<div class="ticket-title">
+    <h3>Tickets</h3>
+</div>
 {{!-- Scripts --}}
 <script>
     // Negative number constraint
@@ -52,9 +54,11 @@
 
 </script>
 
+<div class="tickets-container">
 
 {{!-- Browse tickets --}}
 <div id="browseTickets">
+    <h3>Browse Tickets</h3>
 <table border="1" cellpadding="5" id="ticketTable">
     <thead>
         <tr>
@@ -84,10 +88,10 @@
 </div>
 
 {{!-- Create a Ticket form --}}
-<div id="createTicket" style=display: 'block'>
+<div id="createTicket" style='display: block'>
     <h4>Create a new Ticket</h4>
     <form id="createTicketForm">
-        <fieldset>
+        <fieldset class="ticket-create-container">
             <label> Customer </label><select name="cust_id" id="custIDInput">
                 <option>Choose a customer</option>
                 {{#each custData}}
@@ -119,10 +123,10 @@
 
 {{!-- Update/Edit a Ticket form --}}
 <div id="ticketEdit" style="display: none">
-    <h5 id="ticketEditTitle"></h5>
+<h5 id="ticketEditTitle"></h5>
     <form id="ticketEditForm">
-        <fieldset>
-            <label id="ticketLabel"></label>
+        <fieldset class="ticket-edit-container">
+            <label id="ticketLabel" style="display: none;"></label>
             <label>Customer</label>
                 <select name="editCustSelection" id="editCustIDInput">
                     <option>Choose a customer</option>
@@ -151,10 +155,12 @@
             <label>Price</label> <input type="number" min="0" name="price" id="editPriceInput">
             <label>Flight Date</label> <input type="date" name="flight_date" id="editFlightDateInput">
         </fieldset>
-        <button type="submit" onclick="hideFormSuccessful()" id="submitButton">Submit</button>
         <button type="button" onclick="hideForm()">Cancel</button>
+        <button type="submit" onclick="hideFormSuccessful()" id="submitButton">Submit</button>
     </form>
 </div>
+
+</div>{{!-- Full page container --}}
 
 {{!-- Update AJAX --}}
 <script src="./js/update_ticket.js"></script>

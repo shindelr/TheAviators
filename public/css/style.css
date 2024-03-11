@@ -1,5 +1,12 @@
 /* Main Styles! */
 
+/* Changes here! */
+html {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
 /* Body tag below, we'll use it to define fonts, things like that */
 body {
     font-family: 'Lato';
@@ -56,16 +63,31 @@ a:visited {
 
 /* HEADER SECTION END */
 /* --------------------------------- */
-/* GENERAL CONTENT SECTION START */
+/* GENERAL CONTENT & FOOTER SECTION START */
+
+/* This weird div was needed to make the footer not float? */
+.all-content {
+    min-height:100%;
+    position:relative;
+}
 
 .content {
     padding-top: 150px;
-    padding-bottom: 40px;
+    padding-bottom: 75px;
     padding-left: 20px;
     padding-right: 20px;
+    height: 100%;
 }
 
-/* GENERAL CONTENT SECTION END */
+footer {
+    background-color: #F8F6F4;
+    height: 75px;
+    bottom:0;
+    margin-top: 80px;
+    width:100%;
+}
+
+/* GENERAL CONTENT & FOOTER SECTION END */
 /* --------------------------------- */
 /* INDEX SECTION START */
 
@@ -93,11 +115,6 @@ a:visited {
 /* --------------------------------- */
 /* JETS & MODELS SECTION START */
 
-/* .jet-model-page-container {
-    display: flex;
-    flex-direction: column;
-} */
-
 .jets-models-title {
     display: flex;
     justify-content: center;
@@ -121,8 +138,7 @@ a:visited {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
-    padding-top: 80px;
+    padding-top: 60px;
     padding-bottom: 80px;
 }
 
@@ -135,8 +151,33 @@ a:visited {
     padding-bottom: 10px;
 }
 
-
-
-
-
 /* JETS & MODELS SECTION END */
+/* --------------------------------- */
+/* TICKETS SECTION START */
+
+.ticket-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.tickets-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 20px;
+    padding-top: 50px;
+}
+
+.ticket-edit-container,
+.ticket-create-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    border: 0;
+    padding-right: 30px;
+}
+
+/* TICKETS SECTION END */
+/* --------------------------------- */
+
