@@ -1,6 +1,5 @@
 /* Main Styles! */
 
-/* Changes here! */
 html {
     margin:0;
     padding:0;
@@ -66,10 +65,10 @@ a:visited {
 /* GENERAL CONTENT & FOOTER SECTION START */
 
 /* This weird div was needed to make the footer not float? */
-.all-content {
+/* .all-content {
     min-height:100%;
     position:relative;
-}
+} */
 
 .content {
     padding-top: 150px;
@@ -79,13 +78,14 @@ a:visited {
     height: 100%;
 }
 
-footer {
+/* .footer {
     background-color: #F8F6F4;
     height: 75px;
-    bottom:0;
     margin-top: 80px;
     width:100%;
-}
+    position: absolute;
+    bottom: 0;
+} */
 
 /* GENERAL CONTENT & FOOTER SECTION END */
 /* --------------------------------- */
