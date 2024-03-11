@@ -59,14 +59,8 @@ a:visited {
 /* GENERAL CONTENT SECTION START */
 
 .content {
-    display: flex;
-    justify-content: center;
     padding-top: 120px;
     padding-bottom: 40px;
-    /* justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 40px; */
 }
 
 /* GENERAL CONTENT SECTION END */
@@ -92,8 +86,5 @@ a:visited {
     align-items: center;
     padding-bottom: 80px;
 }
-
-
-
 
 /* INDEX SECTION END */
