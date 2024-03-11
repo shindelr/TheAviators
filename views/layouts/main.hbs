@@ -9,20 +9,25 @@ for the whole site. --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aviators' Database Interface</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Welcome to the Aviators</h1>
-<div class="nav">
-    <h2>Available Tables</h2>
-    <nav>
-    <a href="/">Home</a>   
-    <a href="/customers">Customers</a>   
-    <a href="/jets">Jets</a>   
-    <a href="/routes">Routes</a>   
-    <a href="/airports">Airports</a>   
-    <a href="/tickets">Tickets</a>   
-    </nav>
+    <div class="header-full">
+        <h1 class="title">Welcome to the Aviators</h1>
+    <div class="nav">
+        {{!-- <h2>Available Tables</h2> --}}
+        <nav>
+        <a href="/">Home</a>   
+        <a href="/customers">Customers</a>   
+        <a href="/jets">Jets</a>   
+        <a href="/routes">Routes</a>   
+        <a href="/airports">Airports</a>   
+        <a href="/tickets">Tickets</a>   
+        </nav>
+    </div>
 </div>
-    {{{body}}}
+    <div class="content">
+        {{{body}}}
+    </div>
 </body>
 </html>
