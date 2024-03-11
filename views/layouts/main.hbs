@@ -10,21 +10,24 @@ for the whole site. --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aviators' Database Interface</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prata&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="header-full">
-        <h1 class="title">Welcome to the Aviators</h1>
-    <div class="nav">
-        {{!-- <h2>Available Tables</h2> --}}
-        <nav>
-        <a href="/">Home</a>   
-        <a href="/customers">Customers</a>   
-        <a href="/jets">Jets</a>   
-        <a href="/routes">Routes</a>   
-        <a href="/airports">Airports</a>   
-        <a href="/tickets">Tickets</a>   
-        </nav>
-    </div>
+        <h1 class="title">The Aviators</h1>
+        <div class="nav-container">
+            {{!-- <h2>Available Tables</h2> --}}
+            <nav class="nav-contents">
+            <a href="/">Home</a>   
+            <a href="/customers">Customers</a>   
+            <a href="/jets">Jets</a>   
+            <a href="/routes">Routes</a>   
+            <a href="/airports">Airports</a>   
+            <a href="/tickets">Tickets</a>   
+            </nav>
+        </div>
 </div>
     <div class="content">
         {{{body}}}
