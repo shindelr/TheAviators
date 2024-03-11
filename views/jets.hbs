@@ -1,13 +1,19 @@
-<h3>Browse Jets and Models</h3>
+<div class="jets-models-title">
+    <h3>Browse Jets and Models</h3>
+</div>
 <script>
     function successAlert(){
         alert('Submitted')
     }
 </script>
 
+{{!-- <div class="jet-model-page-container"> --}}
 
+<div class="jets-models-tables-container">
 {{!-- Browse Jets Section --}}
-<div id="browseJets">
+
+<div id="browseJets" class="jet-table">
+    <h4>Jet Inventory</h4>
     <table border="1" cellpadding="5" id="jetsTable">
         <thead>
             <tr>
@@ -32,8 +38,8 @@
 </div>
 
 {{!-- Browse Models Section --}}
-<div id="browseModels">
-    <h3>Model Types</h3>
+<div id="browseModels" class="model-table">
+    <h5>Model Types</h5>
     <table border="1" cellpadding="5" id="modelsTable">
         <thead>
             <tr>
@@ -54,11 +60,15 @@
     </table>
 </div>
 
+</div>{{!-- End tag for container of both tables   --}}
+
+<div class="jets-models-create-forms">
+
 {{!-- Create a jet form --}}
-<div id="createJet">
+<div id="createJet" class="create-jet-form-container">
     <h4>Create a new Jet</h4>
     <form id="createJetForm">
-        <fieldset>
+        <fieldset class="create-jet-form">
             <label>Jet ID</label> <input type="text" name="jet_id" id="jetIDInput">
             <label>Model ID</label> <select name="model_id" id="modelIDInput">
                 <option>Choose a model</option>
@@ -69,7 +79,6 @@
             <label>Date Acquired</label> <input type="date" name="date_acquired" id="dateInput">
             <label>Total Hours</label> <input type="number" min="0" name="total_hours" id="hoursInput">
         </fieldset>
-        {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
         <button type="submit">Create!</button>
     </form>
 </div>
@@ -78,18 +87,20 @@
 <script src="./js/add_jet.js"></script>
 
 {{!-- Create a model form --}}
-<div id="createModel">
-    <h5>Create a new Model</h5>
-    <form id="createModelForm">
-        <fieldset>
+<div id="createModel" class="create-model-form-container">
+    <h4>Create a new Model</h4>
+    <form id="createModelForm" >
+        <fieldset class="create-model-form">
             <label>Model ID</label> <input type="text" name="model_id" id="createModelIDInput">
             <label>Make</label> <input type="text" name="make" id="makeInput">
             <label>Passenger Capacity</label> <input type="number" min="0" name="pass_capacity" id="passCapInput">
         </fieldset>
-        {{!-- <button type="button" onclick="successAlert()">Create!</button> --}}
         <button type="submit">Create!</button>
     </form>
 </div>
+
+</div>{{!--End tag for the create forms--}}
+{{!-- </div>End tag for whole page container --}}
 
 {{!-- JS for AJAX --}}
 <script src="./js/add_model.js"></script>
