@@ -1,51 +1,60 @@
 {{!--The following code was adapted from the CS340 nodejs-starter-app --}}
+<div class="customer-title">
+    <h3>Browse Customers</h3>
+</div>
 
-<h3>Browse Customers</h3>
+<div class="customer-page-container">
 
   {{!-- Browse customers --}}
-<div id="browseCustomers">
-<table id = "customers-table" border="1" cellpadding="5">
-    <thead>
-        <tr>
-            {{#each data.[0]}}
-            <th>{{@key}}</th>
+<div id="browseCustomers" class="customers-table-container">
+    <h4>All Aviators</h4>
+    <table id = "customers-table" border="1" cellpadding="5">
+        <thead>
+            <tr>
+                {{#each data.[0]}}
+                <th>{{@key}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{this.Customer_ID}}</td>
+                <td>{{this.First_Name}}</td>
+                <td>{{this.Last_Name}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.Phone_Number}}</td>
+                <td>{{this.Airline_Miles}}</td>
+                <td>{{this.Member_Since}}</td>
+            </tr>
             {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>{{this.Customer_ID}}</td>
-            <td>{{this.First_Name}}</td>
-            <td>{{this.Last_Name}}</td>
-            <td>{{this.Email}}</td>
-            <td>{{this.Phone_Number}}</td>
-            <td>{{this.Airline_Miles}}</td>
-            <td>{{this.Member_Since}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
 
  {{!-- Add new customer --}}
-<h2>Become an Aviation Member</h2>
-<p>Fill out the infomation below to become a member</p>
-<form id="add-customer">
-    <label for="input-fname">First Name: </label>
-    <input type="text" name="input-fname" id="input-fname">
-    
-    <label for="input-lname">Last Name: </label>
-    <input type="text" name="input-lname" id="input-lname">
+<div class="create-customer-container">
+    {{!-- <h2>Become an Aviation Member</h2> --}}
+    <h2>Become an Aviator</h2>
+    {{!-- <p>Fill out the infomation below to become a member</p> --}}
+    <form id="add-customer">
+        <label for="input-fname">First Name: </label>
+        <input type="text" name="input-fname" id="input-fname">
+        
+        <label for="input-lname">Last Name: </label>
+        <input type="text" name="input-lname" id="input-lname">
 
-    <label for="input-email">Email: </label>
-    <input type="text" name="input-email" id="input-email">
+        <label for="input-email">Email: </label>
+        <input type="text" name="input-email" id="input-email">
 
-    <label for="input-number">Phone Number: </label>
-    <input type="text" name="input-number" id="input-number">
+        <label for="input-number">Phone Number: </label>
+        <input type="text" name="input-number" id="input-number">
 
-    <input type="submit">
-</form>
+        <input type="submit">
+    </form>
+</div>
+
+</div>{{!-- end tag for customer-page-container --}}
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_customer.js"></script>

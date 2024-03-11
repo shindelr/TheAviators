@@ -1,53 +1,62 @@
 {{!--The following code was adapted from the CS340 nodejs-starter-app --}}
 
-<h3>Browse Airports</h3>
+<div class="airports-title">
+    <h3>Airports</h3>
+</div>
+
+<div class="airports-container">
 
  {{!-- Browse Airports --}}
-<div id="browseAirports">
-<table id="airports-table" border="1" cellpadding="5">
-    <thead>
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
+<div id="browseAirports" class="browse-airports-container">
+    <h4>Available Airports</h4>
+    <table id="airports-table" border="1" cellpadding="5">
+        <thead>
+            <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{this.Airport_Code}}</td>
+                <td>{{this.City}}</td>
+                <td>{{this.State}}</td>
+                <td>{{this.Country}}</td>
+            </tr>
             {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>{{this.Airport_Code}}</td>
-            <td>{{this.City}}</td>
-            <td>{{this.State}}</td>
-            <td>{{this.Country}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
 
 
 
 
  {{!-- Form to add a record to the table  --}}
-<h2>Add New Airport</h2>
-<p>Enter details below to add new airport</p>
-<form id="add-airport">
-    <label for="input-code">Airport Code: </label>
-    <input type="text" name="input-code" id="input-code">
-    
-    <label for="input-city">City: </label>
-    <input type="text" name="input-city" id="input-city">
+ <div class="create-airport-container">
+    <h5>Add a new Airport</h5>
+    {{!-- <p>Enter details below to add new airport</p> --}}
+    <form id="add-airport" class="create-airport-form">
+        <label for="input-code">Airport Code: </label>
+        <input type="text" name="input-code" id="input-code">
+        
+        <label for="input-city">City: </label>
+        <input type="text" name="input-city" id="input-city">
 
-    <label for="input-state">State: </label>
-    <input type="text" name="input-state" id="input-state">
+        <label for="input-state">State: </label>
+        <input type="text" name="input-state" id="input-state">
 
-    <label for="input-country">Country: </label>
-    <input type="text" name="input-country" id="input-country">
+        <label for="input-country">Country: </label>
+        <input type="text" name="input-country" id="input-country">
 
-    <input type="submit">
-</form>
+        <input type="submit">
+    </form>
+</div>
+
+</div> {{! -- end tag for full container -- }}
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_airport.js"></script>

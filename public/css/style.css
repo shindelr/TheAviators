@@ -200,3 +200,67 @@ a:visited {
 
 /* ROUTES SECTION END */
 /* --------------------------------- */
+/* AIRPORTS SECTION START */
+
+.airports-title {
+    display: flex;
+    justify-content: center;
+}
+
+.airports-container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    gap: 10px;
+    padding-top: 70px;
+}
+
+.browse-airports-container,
+.create-airport-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.create-airport-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* AIRPORTS SECTION END */
+/* --------------------------------- */
+/* CUSTOMERS SECTION START */
+
+.customer-title {
+    display: flex;
+    justify-content: center;
+}
+
+.customer-page-container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    gap: 10px;
+    padding-top: 70px;
+}
+
+.customers-table-container,
+.create-customer-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.create-customer-container {
+    padding-top: 20px;
+}
+
+#add-customer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* CUSTOMERS SECTION END */
+/* --------------------------------- */
