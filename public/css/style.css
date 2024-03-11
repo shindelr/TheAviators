@@ -59,8 +59,9 @@ a:visited {
 /* GENERAL CONTENT SECTION START */
 
 .content {
-    padding-top: 120px;
+    padding-top: 150px;
     padding-bottom: 40px;
+    padding-left: 20px;
 }
 
 /* GENERAL CONTENT SECTION END */
