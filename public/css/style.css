@@ -23,6 +23,18 @@ h1 {
     font-size: 36px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid lightgrey; 
+}
+
+td {
+    padding-top: 10px;
+}
+
 /* HEADER SECTION START */
 
 .header-full {
