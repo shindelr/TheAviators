@@ -2,10 +2,15 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<h3>Browse Routes</h3>
+<div class="routes-title">
+  <h3>Routes</h3>
+</div>
+
+<div class="routes-container">
 
   {{!-- Browse Routes --}}
-<div id="browseRoutes">
+<div id="browseRoutes" class="routes-table">
+<h4>Browse Routes</h4>
 <table id = "routes-table" border="1" cellpadding="5">
     <thead>
         <tr>
@@ -34,33 +39,37 @@
 <script src="./js/delete_route.js"></script>
 
 {{!-- Form to add a record to the table  --}}
-<h2>Create new Route</h2>
-<p>Fill out the information below to create a new route</p>
-<form id="add-route">
-    <label for="input-id">Route ID: </label>
-    <input type="number" min="0" name="input-id" id="input-id">
-    
-    <label for="input-origin">Origin: </label>
-    <select name="airport_id" id = "input-origin">
-      <option>Choose Origin Airport</option>
-        {{#each airportsData}}
-          <option>{{this.airport_id}}</option>
-        {{/each}}
-    </select>
+<div class="create-route-container">
+  <h2>Create new Route</h2>
+  {{!-- <p>Fill out the information below to create a new route</p> --}}
+  <form id="add-route" class="add-route">
+      <label for="input-id">Route ID: </label>
+      <input type="number" min="0" name="input-id" id="input-id">
+      
+      <label for="input-origin">Origin: </label>
+      <select name="airport_id" id = "input-origin">
+        <option>Choose Origin Airport</option>
+          {{#each airportsData}}
+            <option>{{this.airport_id}}</option>
+          {{/each}}
+      </select>
 
-    <label for="input-destination">Destination: </label>
-    <select name="airport_id" id = "input-destination">
-      <option>Choose Destination Airport</option>
-        {{#each airportsData}}
-          <option>{{this.airport_id}}</option>
-        {{/each}}
-    </select>
-    
-    <label for="input-distance">Distance: </label>
-    <input type="number" min="0" name="input-distance" id="input-distance">
+      <label for="input-destination">Destination: </label>
+      <select name="airport_id" id = "input-destination">
+        <option>Choose Destination Airport</option>
+          {{#each airportsData}}
+            <option>{{this.airport_id}}</option>
+          {{/each}}
+      </select>
+      
+      <label for="input-distance">Distance: </label>
+      <input type="number" min="0" name="input-distance" id="input-distance">
 
-    <input type="submit">
-</form>
+      <input type="submit">
+  </form>
+</div>
+
+</div>{{!-- end routes-container div --}}
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_route.js"></script>
