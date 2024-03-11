@@ -1,0 +1,31 @@
+/* Main Styles! */
+
+/* Body tag below, we'll use it to define fonts, things like that */
+/* body {} */
+
+.header-full {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #F8F6F4;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 4px 15px -2px rgb(209, 209, 209);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    padding-top: 120px;
+}
