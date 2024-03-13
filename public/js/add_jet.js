@@ -1,4 +1,7 @@
 // Perform the AJAX operations to add a jet to the table
+// This code is heavily adapted from step 5 of the CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+
 
 let addJetForm = document.getElementById('createJetForm');
 

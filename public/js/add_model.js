@@ -1,4 +1,7 @@
 // Perform AJAX operations to add a model to the table
+// This code is heavily adapted from step 5 of the CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+// However, improvements were made by Robin to streamline the updateRow function.
 
 let createModelForm = document.getElementById('createModelForm');
 
