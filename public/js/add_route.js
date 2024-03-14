@@ -110,8 +110,8 @@ addRowToTable = (data, newRouteID) => {
     destinationCell.innerText = newRow.Destination;
     distanceCell.innerText = newRow.Distance;
     timesFlownCell.innerText = newRow.Times_Flown;
-    //deleteCell.innerText = deleteRoute(routeID);
-
+    
+    
  
     // Add the cells to the row 
     row.appendChild(idCell);
@@ -119,7 +119,16 @@ addRowToTable = (data, newRouteID) => {
     row.appendChild(destinationCell);
     row.appendChild(distanceCell);
     row.appendChild(timesFlownCell);
-    //row.appendChild(deleteCell);
+    
+    //Add Delete button
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.onclick = function(){deleteRoute(RouteID);};
+
+    deleteCell.innerText = deleteButton; // not a text element I want to add...
+ 
+    row.appendChild(deleteCell);
+   
 
     
     // Add the row to the table
