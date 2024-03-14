@@ -1,3 +1,5 @@
+// The following code is based on the CS340 nodejs-starter-app
+
 // Get the objects we need to modify
 let addRouteForm = document.getElementById('add-route');
 
@@ -14,11 +16,15 @@ addRouteForm.addEventListener("submit", function (e) {
     let inputDestination = document.getElementById("input-destination");
     let inputDistance = document.getElementById("input-distance");
 
+    //debugger;
+
     // Get the values from the form fields
     let routeIDValue = inputRouteID.value;
     let originValue = inputOrigin.value;
     let destinationValue = inputDestination.value;
     let distanceValue = inputDistance.value;
+
+    newRouteID = parseInt(routeIDValue);
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -38,7 +44,7 @@ addRouteForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response, newRouteID);
 
             // Clear the input fields for another transaction
             inputRouteID.value = '';
@@ -51,25 +57,40 @@ addRouteForm.addEventListener("submit", function (e) {
         }
     }
 
+    debugger;
+
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
-addRowToTable = (data) => {
+// Creates a single row from an Object
+
+addRowToTable = (data, newRouteID) => {
+
+    debugger;
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("routes-table");
 
     // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    let tableLength = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
-    let newRow = parsedData[parsedData.length - 1]
+    //let newRow = parsedData[parsedData.length - 1]
+
+    debugger;
+
+    //routeNum = parsedData[0].Route_Number
+
+    for (let i = 0; i < tableLength; i++) {
+        if (parsedData[i].Route_Number == newRouteID) {
+             newRow = parsedData[i]
+             break;
+        }
+     }
 
     // Create a row and 5 cells
     let row = document.createElement("TR");
@@ -78,6 +99,7 @@ addRowToTable = (data) => {
     let destinationCell = document.createElement("TD");
     let distanceCell = document.createElement("TD");
     let timesFlownCell = document.createElement("TD");
+    let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.Route_Number;
@@ -85,19 +107,19 @@ addRowToTable = (data) => {
     destinationCell.innerText = newRow.Destination;
     distanceCell.innerText = newRow.Distance;
     timesFlownCell.innerText = newRow.Times_Flown;
+    //deleteCell.innerText = deleteRoute(routeID);
 
-    debugger;
+ 
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(originCell);
     row.appendChild(destinationCell);
     row.appendChild(distanceCell);
     row.appendChild(timesFlownCell);
+    //row.appendChild(deleteCell);
+
     
     // Add the row to the table
     currentTable.appendChild(row);
-    location.reload();
+    //location.reload();
 }
-
-
-
