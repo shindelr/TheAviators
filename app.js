@@ -222,7 +222,7 @@ app.post('/add-route', function(req, res)
     let data = req.body;
     // Insert new data entry in Routes table
     query1 = `INSERT INTO Routes (route_id, origin_loc, destination_loc, distance, times_flown) 
-    VALUES ('${data.route_id}', '${data.origin_loc}', '${data.destination_loc}', '${data.distance}', ${0})`;
+    VALUES ('${data.route_id}', '${data.origin_loc}', '${data.destination_loc}', '${data.distance}', 0)`;
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
             console.log(error)
