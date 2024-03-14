@@ -1,4 +1,7 @@
 //This code was adopted from the nodejs-starter-app
+// This code is heavily adapted from step 5 of the CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+
 
 // Get the objects we need to modify
 let addCustomerForm = document.getElementById('add-customer');

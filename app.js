@@ -1,5 +1,8 @@
 // Main entry point to our web application
-// The following code was adapted from the CS340 nodejs-starter-app
+// The basic routes in the following code were adapted from the 
+// CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+
 
 // SETUP
 // Server setup 

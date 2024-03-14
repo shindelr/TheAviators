@@ -1,4 +1,8 @@
 // Perform AJAX to add a ticket
+// Perform AJAX UPDATE operations on existing Tickets
+// This code is heavily adapted from step 5 of the CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+// However, improvements were made by Robin to streamline the updateRow function.
 
 let createTicketForm = document.getElementById('createTicketForm');
 
