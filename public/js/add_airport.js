@@ -21,6 +21,8 @@ addAirportForm.addEventListener("submit", function (e) {
     let stateValue = inputState.value;
     let countryValue = inputCountry.value;
 
+    newAirportID = codeValue;
+
     // Put our data we want to send in a javascript object
     let data = {
         airport_id: codeValue,
@@ -39,7 +41,7 @@ addAirportForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response, newAirportID);
 
             // Clear the input fields for another transaction
             inputCode.value = '';
@@ -58,17 +60,26 @@ addAirportForm.addEventListener("submit", function (e) {
 
 // Creates a single row from an Object representing a single record from 
 // Airports
-addRowToTable = (data) => {
+addRowToTable = (data, newAirportID) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("airports-table");
 
     // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    let tableLength = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
-    let newRow = parsedData[parsedData.length - 1]
+    //let newRow = parsedData[parsedData.length - 1]
+
+    debugger;
+
+    for (let i = 0; i < tableLength; i++) {
+        if (parsedData[i].Airport_Code == newAirportID) {
+             newRow = parsedData[i]
+             break;
+        }
+     }
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
@@ -91,5 +102,5 @@ addRowToTable = (data) => {
     
     // Add the row to the table
     currentTable.appendChild(row);
-    location.reload();
+    //location.reload();
 }
