@@ -59,41 +59,42 @@ addRouteForm.addEventListener("submit", function (e) {
             console.log("There was an error with the input.")
         }
     }
-
-    debugger;
-
+    //debugger;
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
 })
 
-
-// Creates a single row from an Object
+// Creates a single row from an Object from Routes
 
 addRowToTable = (data, newRouteID) => {
 
-    debugger;
-
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("routes-table");
-
     // Get the location where we should insert the new row (end of table)
     let tableLength = currentTable.rows.length;
-
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
-    //let newRow = parsedData[parsedData.length - 1]
 
-    debugger;
-
-    //routeNum = parsedData[0].Route_Number
-
+    // For loop that finds the index of the new data entry
     for (let i = 0; i < tableLength; i++) {
         if (parsedData[i].Route_Number == newRouteID) {
              newRow = parsedData[i]
+             newRowIndex = i
              break;
         }
      }
+
+    // debugger;
+    // tableColumns = ["Route_Number", "Origin", "Destination", "Distance", "Times_Flown"];
+    // // For loop that adds new data row to table
+    // let row = document.createElement('TR');
+    // for (let i = 0; i < 5; i++ ){
+    //     let cell = document.createElement('TD');
+    //     cell.innerText = newRow.tableColumns[i];
+    //     row.appendChild(cell);
+    // }
+
 
     // Create a row and 5 cells
     let row = document.createElement("TR");
@@ -111,8 +112,6 @@ addRowToTable = (data, newRouteID) => {
     distanceCell.innerText = newRow.Distance;
     timesFlownCell.innerText = newRow.Times_Flown;
     
-    
- 
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(originCell);
@@ -120,18 +119,14 @@ addRowToTable = (data, newRouteID) => {
     row.appendChild(distanceCell);
     row.appendChild(timesFlownCell);
     
-    //Add Delete button
+    // Add Delete button
     let deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
     deleteButton.onclick = function(){deleteRoute(RouteID);};
-
-    deleteCell.innerText = deleteButton; // not a text element I want to add...
- 
+    deleteCell.appendChild(deleteButton)
     row.appendChild(deleteCell);
-   
-
     
     // Add the row to the table
     currentTable.appendChild(row);
-    //location.reload();
+
 }
