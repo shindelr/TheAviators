@@ -1,5 +1,6 @@
-//The following code is based on the CS340 nodejs-starter-app
-// Perform AJAX UPDATE operations on existing Tickets
+// Delete Routes AJAX
+// The functions below are adapted from step 7 of the CS340 nodejs starter app.
+// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 
 function deleteRoute(routeID) {
   let link = '/delete-route/';
@@ -18,8 +19,6 @@ function deleteRoute(routeID) {
   });
 }
 
-// The function below is adapted from step 7 of the CS340 nodejs starter app.
-// URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 function deleteRow(routeID){
 
     let table = document.getElementById("routes-table");
