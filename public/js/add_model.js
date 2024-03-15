@@ -55,7 +55,7 @@ addRowToTable = (modelData, newModelID) => {
     let modelTable = document.getElementById('modelsTable');
     // Parse express data
     let parsedData = JSON.parse(modelData);
-    
+
     let tableLength = modelTable.rows.length;
     let inputRow = NaN
 
@@ -72,7 +72,7 @@ addRowToTable = (modelData, newModelID) => {
     let row = document.createElement('TR');
 
     for (key in inputRow) {
-        if (inputRow.hasOwnProperty(key)) { // Ensure the property belongs to the object itself, not its prototype chain
+        if (inputRow.hasOwnProperty(key)) { // Check if prototype chain?
             let cell = document.createElement('td');
             cell.innerText = inputRow[key];
             row.appendChild(cell);
@@ -81,4 +81,5 @@ addRowToTable = (modelData, newModelID) => {
     
     modelTable.appendChild(row);
     alert('Data Sucessfully Entered');
+    location.reload()
 }

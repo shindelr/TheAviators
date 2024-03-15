@@ -22,6 +22,8 @@ addJetForm.addEventListener('submit', function(e){
     let dateVal = dateInput.value;
     let hourVal = hoursInput.value; 
      
+    let newJetID = jetIDVal;
+
     // Pack the data into an object
     let jetData = {
         jet_id: jetIDVal,
@@ -38,7 +40,7 @@ addJetForm.addEventListener('submit', function(e){
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState === 4 && xhttp.status === 200){
             // Process the new data
-            addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response, newJetID);
             // Clear input fields for the next go
             jetIDVal = '';
             modelIDVal = '';
@@ -55,13 +57,24 @@ addJetForm.addEventListener('submit', function(e){
 })
 
 // Create a single row of data corresponding to the input data
-addRowToTable = (jetData) => {
+addRowToTable = (jetData, newJetID) => {
     let jetsTable = document.getElementById('jetsTable');
-    let rowIndex = jetsTable.rows.length;
+    let tableLength = jetsTable.rows.length;
     // Parse incoming Express data
     let parsedData = JSON.parse(jetData);
-    let inputRow = parsedData[parsedData.length - 1]
+    let inputRow = NaN
+
+    // let inputRow = parsedData[parsedData.length - 1]
+
+    for (let i=0; i < tableLength; i++) {
+        if (parsedData[i].jet_id === newJetID) {
+            inputRow = parsedData[i];
+            break;
+        }
+    }
+
     console.log(inputRow)
+
     // Build new row
     let row = document.createElement('TR');
     let jetIDCell = document.createElement('TD');
@@ -88,7 +101,7 @@ addRowToTable = (jetData) => {
     row.appendChild(dateCell);
     
     // Finally, add the row to the table
-    jetsTable.appendChild(row);
+    jetsTable.appendChild(newRow);
 
     // Added the reload to get the data to fill in properly
     alert('Data Sucessfully Entered');
