@@ -19,6 +19,8 @@ createModelForm.addEventListener('submit', function (e){
     let makeVal = makeInput.value; 
     let passCapVal = passCapInput.value; 
 
+    let newModelID = modelVal
+
     // Pack data as JS object, property names are same as SQL table attributes
     let modelData = {
         model_id: modelVal,
@@ -34,7 +36,7 @@ createModelForm.addEventListener('submit', function (e){
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState === 4 && xhttp.status === 200){
             //Process new data and add row to table
-            addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response, newModelID);
             // Reset input form
             modelInput.value = '';
             makeInput.value = '';
@@ -49,19 +51,34 @@ createModelForm.addEventListener('submit', function (e){
     xhttp.send(JSON.stringify(modelData));
 })
 
-addRowToTable = (modelData) => {
+addRowToTable = (modelData, newModelID) => {
     let modelTable = document.getElementById('modelsTable');
     // Parse express data
     let parsedData = JSON.parse(modelData);
-    let inputRow = parsedData[parsedData.length - 1];
+    
+    let tableLength = modelTable.rows.length;
+    let inputRow = NaN
+
+    for (let i=0; i < tableLength; i++) {
+        if (parsedData[i].model_id === newModelID) {
+            inputRow = parsedData[i];
+            break;
+        }
+    }
+
+    console.log(inputRow)
+
     // Build the row
     let row = document.createElement('TR');
-    for (let i = 0; i<inputRow.length; i++ ){
-        let cell = document.createElement('TD');
-        cell.innerText = inputRow[i];
-        row.appendChild(cell);
+
+    for (key in inputRow) {
+        if (inputRow.hasOwnProperty(key)) { // Ensure the property belongs to the object itself, not its prototype chain
+            let cell = document.createElement('td');
+            cell.innerText = inputRow[key];
+            row.appendChild(cell);
+        }
     }
+    
     modelTable.appendChild(row);
     alert('Data Sucessfully Entered');
-    location.reload();
 }
