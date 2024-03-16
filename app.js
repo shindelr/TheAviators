@@ -439,30 +439,34 @@ app.put('/update-ticket-ajax', function(req, res, next){
 app.delete('/delete-route/', function(req,res,next){
   let data = req.body;
   let routeID = parseInt(data.id);
-// delete references to the deleted route from Routes and Tickets table
-// might need to revise this later so that entry in Tickets is not deleted, simply set to the default
-  let deleteTickets = `DELETE FROM Tickets WHERE route_id = '${routeID}'`;
+  // Only one query is necessary since the FK reference for route_id in the Tickets table is
+  // set to 'on delete set null'
   let deleteRoutes= `DELETE FROM Routes WHERE route_id = '${routeID}'`;
+            // The following deletes the route in the Routes table
+            db.pool.query(deleteRoutes, [routeID], function(error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.sendStatus(204);
+                }
+            })
+});
 
-        // First delete the FK reference to routeID in Tickets. This should change the routeID to the default which is 0000 - work in progress
-        db.pool.query(deleteTickets, [routeID], function(error, rows, fields){
+app.delete('/delete-ticket/', function(req,res,next){
+    let data = req.body;
+    let ticketID = parseInt(data.id);
+    let deleteTicket = `DELETE FROM Tickets WHERE ticket_id = '${ticketID}'`; 
+        // The following deletes the ticket in the Tickets table
+        db.pool.query(deleteTicket, [ticketID], function(error, rows, fields) {
             if (error) {
-            console.log(error);
-            res.sendStatus(400);
-            }
-            else
-            {
-                // If no errors found, now delete the route in the Routes table
-                db.pool.query(deleteRoutes, [routeID], function(error, rows, fields) {
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.sendStatus(204);
+                console.log(error);
+                res.sendStatus(400);
+            } else {
+                    res.sendStatus(204);
                     }
-                })
-            }
-})});
+            })            
+  });
 
 
 // LISTENER
