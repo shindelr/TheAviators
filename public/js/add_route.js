@@ -1,4 +1,4 @@
-// Routes AJAX
+// Add Routes AJAX
 // This code is heavily adapted from step 5 of the CS340 nodejs starter app.
 // URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 
@@ -11,7 +11,6 @@ addRouteForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
-
 
     // Get form fields we need to get data from
     let inputRouteID = document.getElementById("input-id");
@@ -66,12 +65,11 @@ addRouteForm.addEventListener("submit", function (e) {
 })
 
 // Creates a single row from an Object from Routes
-
 addRowToTable = (data, newRouteID) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("routes-table");
-    // Get the location where we should insert the new row (end of table)
+    // Get table length
     let tableLength = currentTable.rows.length;
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
@@ -84,17 +82,6 @@ addRowToTable = (data, newRouteID) => {
              break;
         }
      }
-
-    // debugger;
-    // tableColumns = ["Route_Number", "Origin", "Destination", "Distance", "Times_Flown"];
-    // // For loop that adds new data row to table
-    // let row = document.createElement('TR');
-    // for (let i = 0; i < 5; i++ ){
-    //     let cell = document.createElement('TD');
-    //     cell.innerText = newRow.tableColumns[i];
-    //     row.appendChild(cell);
-    // }
-
 
     // Create a row and 5 cells
     let row = document.createElement("TR");
