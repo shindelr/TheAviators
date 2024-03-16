@@ -1,4 +1,3 @@
-//This code was adopted from the nodejs-starter-app
 // This code is heavily adapted from step 5 of the CS340 nodejs starter app.
 // URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 
@@ -11,7 +10,6 @@ addCustomerForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
- 
 
     // Get form fields we need to get data from
     let inputFirstName = document.getElementById("input-fname");
@@ -63,9 +61,9 @@ addCustomerForm.addEventListener("submit", function (e) {
 })
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// Customers
 addRowToTable = (data) => {
-    // debugger;
+
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("customers-table");
 
