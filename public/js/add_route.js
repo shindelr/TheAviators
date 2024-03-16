@@ -106,10 +106,11 @@ addRowToTable = (data, newRouteID) => {
     row.appendChild(distanceCell);
     row.appendChild(timesFlownCell);
     
+    debugger;
     // Add Delete button
     let deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
-    deleteButton.onclick = function(){deleteRoute(RouteID);};
+    deleteButton.onclick = function(){deleteRoute(newRow.Route_Number);};
     deleteCell.appendChild(deleteButton)
     row.appendChild(deleteCell);
     
