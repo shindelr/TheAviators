@@ -3,20 +3,6 @@
 </div>
 {{!-- Scripts --}}
 <script>
-    // Negative number constraint
-    let createPriceInput = document.getElementById('priceInput')
-    let editPriceInput = document.getElementById('editPriceInput')
-    createPriceInput.addEventListener('input', function(event){
-        if (createPriceInput.value < 0){
-            createPriceInput.value = 0;
-        }
-    });
-    editPriceInput.addEventListener('input', function(event){
-        if (editPriceInput.value < 0){
-            editPriceInput.value = 0;
-        }
-    });
-
     function showEditForm(ticketNumber){
         // Also hides the create form
         let editForm = document.getElementById('ticketEdit');
