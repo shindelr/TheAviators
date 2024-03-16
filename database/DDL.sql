@@ -1,6 +1,7 @@
 -- Authors: Alma Valenzuela, Robin Shindelman
 -- Date Created: 2024-02-07
--- Last Modified: 2024-02-28 by Alma
+-- Last Modified: 2024-03-15 by Alma
+-- Modification: Set route_id in Tickets table to 'on delete set null'
 
 -- Contained in this file are The Aviators' (Formerly Known As Team 31!) data
 -- definition queries. The file is neatly structured into two sections concerned
@@ -74,12 +75,12 @@ FOREIGN KEY (destination_loc) REFERENCES Airports(airport_id) on delete cascade
 create or replace table Tickets (
 ticket_id       int auto_increment not null primary key,
 customer_id     int not null,
-route_id        int not null default 0000,
+route_id        int,
 jet_id          varchar(45) not null,
 price           decimal(19,2) not null,
 flight_date     date not null,
 foreign key (customer_id) references Customers(customer_id)on delete cascade,
-foreign key (route_id) references Routes(route_id)on delete set default,
+foreign key (route_id) references Routes(route_id)on delete set null,
 foreign key (jet_id) references Jets(jet_id) on delete cascade,
 unique key (ticket_id)
 );

@@ -1,5 +1,3 @@
-//This code was adopted from the nodejs-starter-app
-// Perform AJAX UPDATE operations on existing Tickets
 // This code is heavily adapted from step 5 of the CS340 nodejs starter app.
 // URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 
@@ -69,15 +67,14 @@ addRowToTable = (data, newAirportID) => {
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("airports-table");
 
-    // Get the location where we should insert the new row (end of table)
+    // Get length of table
     let tableLength = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
-    //let newRow = parsedData[parsedData.length - 1]
 
-    debugger;
-
+    // The following loop looks for the row index of the newly added row 
+    // This is needed bc primary keys aren't always added in order
     for (let i = 0; i < tableLength; i++) {
         if (parsedData[i].Airport_Code == newAirportID) {
              newRow = parsedData[i]
@@ -106,5 +103,5 @@ addRowToTable = (data, newAirportID) => {
     
     // Add the row to the table
     currentTable.appendChild(row);
-    //location.reload();
+
 }

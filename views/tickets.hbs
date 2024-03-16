@@ -1,3 +1,8 @@
+{{!--The following code was heavily adopted from the CS340 nodejs-starter-app --}}
+{{!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <div class="ticket-title">
     <h3>Tickets</h3>
 </div>
@@ -56,7 +61,7 @@
     </thead>
     <tbody>
     {{#each ticketData}}
-        <tr>
+        <tr data-value={{this.[Ticket Number]}}>
             <td value="{{this.[Ticket Number]}}">{{this.[Ticket Number]}}</td>
             <td>{{this.[First Name]}}</td>
             <td>{{this.[Last Name]}}</td>
@@ -67,11 +72,13 @@
             <td>{{this.Price}}</td>
             <td>{{this.[Flight Date]}}</td>
             <td><button type="button" onclick="showEditForm({{this.[Ticket Number]}})">Edit</button></td>
+            <td><button onclick="deleteTicket({{this.[Ticket Number]}})">Delete</button></td>
         </tr>
     {{/each}}
     </tbody>
 </table>
 </div>
+<script src="./js/delete_ticket.js"></script>
 
 {{!-- Create a Ticket form --}}
 <div id="createTicket" style='display: block'>
@@ -150,3 +157,6 @@
 
 {{!-- Update AJAX --}}
 <script src="./js/update_ticket.js"></script>
+
+
+
